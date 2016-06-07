@@ -1,0 +1,132 @@
+ftt_utilisateur_homepage:
+    path: /accueil
+    defaults: { _controller: FTTUtilisateurBundle:Default:index }
+    
+ftt_utilisateur_error_not_found:
+    path: /ErreurNotFound
+    defaults: { _controller: FTTUtilisateurBundle:Default:ErreurNotFound }
+
+#Actualités
+single_article:
+    path: /article/{id}
+    defaults: { _controller: FTTUtilisateurBundle:Actualite:AfficherArticle }
+    
+list_news:
+    path: /news
+    defaults: { _controller: FTTUtilisateurBundle:Actualite:listArticles }
+    
+#Match
+consulter_matchs:
+    path: /matchs/details
+    defaults: { _controller: FTTUtilisateurBundle:Match:AfficherMatchs }
+    
+consulter_matchs2:
+    path: adherent/matchs/details/{idTicket}
+    defaults: { _controller: FTTUtilisateurBundle:Match:AfficherMatchsApresTicket }
+    
+evaluation:
+    path: /matchs/evaluation/{id}
+    defaults: { _controller: FTTUtilisateurBundle:Match:evaluation }
+    
+    
+#ResultatMatch
+rencontres_directes:
+    path: /rencontres/{idJoueur1}/{idJoueur2}
+    defaults: { _controller: FTTUtilisateurBundle:ResultatMatch:RencontresDirectes }
+    
+resultat_match:
+    path: /matchs/resultats
+    defaults: { _controller: FTTUtilisateurBundle:ResultatMatch:AfficherResultat }
+
+
+
+#Communication
+regarder_match:
+    path: /matchStreaming
+    defaults: { _controller: FTTUtilisateurBundle:StreamingMatch:ListStreamingMatch }
+
+
+my_image_route:
+    pattern: /images/{id}
+    defaults: {_controller: FTTUtilisateurBundle:Match:photo}
+    
+    
+    #Graphe
+consulter_stat:
+    path: /statistique/{id}
+    defaults: { _controller: FTTUtilisateurBundle:Graphe:chartPie }
+    
+#arbitre
+consulter_arbitre:
+    path: /arbitre
+    defaults: { _controller: FTTUtilisateurBundle:Arbitre:AfficherAribtre }
+
+#Pronostics
+matchAparier:
+    path: /matchAparier
+    defaults: { _controller: FTTUtilisateurBundle:MatchPronostic:ListMatchAParier }
+
+
+#Evenement ons
+
+consulter_evenements:
+    path: /evenements
+    defaults: { _controller: FTTUtilisateurBundle:Evenement:AfficherEvents }
+recherche_evenements:
+    path: /evenements/resultat
+    defaults: { _controller:  FTTUtilisateurBundle:Evenement:rechercheevents }
+
+recherche_evenements2:
+    path: /evenements/resultatRechercheAvancée
+    defaults: { _controller:  FTTUtilisateurBundle:Evenement:rechercheevents2 }
+   
+    #marwen complexe
+consulter_complexe:
+    path: /detailcomplexe
+    defaults: { _controller: FTTUtilisateurBundle:Complexe:list }
+
+
+consulter_stade:
+    path: /detailstade
+    defaults: { _controller: FTTUtilisateurBundle:Stade:list }
+
+recherche_A:
+    path: /rechercheparA/{lettre}
+    defaults: { _controller: FTTUtilisateurBundle:Complexe:RechercheParLettre }
+    
+recherche_stade:
+    path: /rechercheparlettre/{lettre}
+    defaults: { _controller: FTTUtilisateurBundle:Stade:recherchestade }
+    
+    
+#syrine    
+   
+    
+#Contact syrien
+contact_federation:
+    path: /ContactFederation
+    defaults: { _controller: FTTAdminBundle:Reclamation:ajouter }
+#ClassementNationalJoueur
+
+joueur_classementNationnal:
+    path: /ClassementNationnal
+    defaults: { _controller: FTTUtilisateurBundle:Joueur:listClassementNationnal }
+    
+#ClassementInternationalJoueur   
+joueur_classementInternational:
+    path: /ClassementInternational
+    defaults: { _controller: FTTUtilisateurBundle:Joueur:listClassementInternational }
+#Club
+list_clubs:
+    path: /listClub
+    defaults: { _controller: FTTUtilisateurBundle:Club:list }
+    
+#Joueur Syrine
+
+list_joueurs:
+    path: /listJoueur
+    defaults: { _controller: FTTUtilisateurBundle:Joueur:list }
+
+consulter_Popup:
+    path: /lieux
+    defaults: { _controller: FTTUtilisateurBundle:Complexe:lieux }

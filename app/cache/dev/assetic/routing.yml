@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: 'C:\xampp\htdocs\Sprint_Web_V1\FTTSprintWeb\app/config/routing_dev.yml'

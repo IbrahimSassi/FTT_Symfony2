@@ -1,0 +1,87 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+{% block bodyAdmin %}
+    {% if users is empty %}
+        <br><br><br>
+        <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+            <h1 align='center' style='color:red;'> il n'existe aucun compte </h1></font> 
+        </div> 
+    {% else %}
+        <table class="table table-bordered" id="dev-table" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Prenom
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                        Telephone
+                    </th>
+                    <th>
+                        E-mail
+                    </th>
+                    <th>
+                        Immatricule
+                    </th>
+                    <th>
+                        Departement Admin
+                    </th>
+                    <th>
+                        Categorie Arbitre
+                    </th>
+                    <th>
+                        Specialite Medecin
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            {{user.nomUser}}
+                        </td>
+                        <td>
+                            {{user.prenomUser}}
+                        </td>
+                        <td>
+                            {{user.ageUser}}
+                        </td>
+                        <td>
+                            {{user.telUser}}
+                        </td>
+                        <td>
+                            {{user.email}}
+                        </td>
+                        <td>
+                            {{user.immatricule}}
+                        </td>
+                        <td>
+                            {{user.departementAdmin}}
+                        </td>
+                        <td>
+                            {{user.categorieArbitre}}
+                        </td>
+                        <td>
+                            {{user.specialiteMedecin}}
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-xs" href="{{path('bloquer_user', {'id':user.id})}}">
+                                <i class="fa fa-trash-o"></i> Bloquer</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-xs" href="{{path('modifier_user',{'id':user.id})}}">
+                                <i class="fa fa-pencil"></i> Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
+
+

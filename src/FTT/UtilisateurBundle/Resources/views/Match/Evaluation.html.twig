@@ -1,0 +1,37 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+{% block body %}
+
+
+
+
+
+    <h1>Evaluation</h1>
+<div class="col-md-12 animated fadeInDown" style="padding-bottom: 2%"  >
+    <div class="well profile_view"   >
+        <div class="col-xs-12 bottom text-center" style="background-color: #00B5F1;color: white;border-bottom-left-radius: 1em;border-top-left-radius: 1em">
+            <h3 style="color: white"> <strong> Match : {{match.idJoueur1.nomJoueur}} {{match.idJoueur1.prenomJoueur}}
+                    Vs {{match.idJoueur2.nomJoueur}} {{match.idJoueur2.prenomJoueur}} </strong> </h3>
+ 
+        </div>
+                    
+    <form method="POST" style="margin-left: 20%;">
+        <table class="table-responsive table-bordered" style="width: 90%;text-align: center"  >
+            <tr >
+                <td>
+                    {{form_label(form.evaluationMatch)}}
+                </td>
+                <td>
+                    {{form_widget(form.evaluationMatch)}}
+                </td>
+                <td colspan="2">{{form_rest(form)}}</td>
+            </tr>
+        </table>
+    </form>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

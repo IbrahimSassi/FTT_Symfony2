@@ -1,0 +1,51 @@
+{% extends "FTTMedecinBundle::layoutMedecin.html.twig" %}
+{% block bodyAdmin %}
+
+    <center>
+        {% if test is empty %}
+            <br><br><br>
+            <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+                <h1 align='center' style='color:red;'> Vous n'avez aucun test </h1></font> 
+            </div> 
+        {% else %}
+
+            <h1> Vos Tests :</h1>
+            {% for test in test %}
+                <table border="1" width="40%" >
+                    <tr>
+                        <td>
+                    <center>
+                        <h5> Date : {{test.idJoueurTester.idMatch.dateMatch | date('d/m/Y')}}</h5>
+                        <h5> Evenement : {{test.idJoueurTester.idMatch.idEvenement.nomEvenement }} </h5>
+                        <h5> Type : {{test.idJoueurTester.idMatch.typeMatch }} </h5>
+                        <h5> Complexe : {{test.idJoueurTester.idMatch.idStade.idComplexe.nomComplexe }} </h5>
+                        <h5> Stade : {{test.idJoueurTester.idMatch.idStade.nomStade }} </h5>
+                        {% for joueur in joueurs %}
+                            {% if (test.idJoueurTester.joueurChoisi == joueur.id) %}
+                                <h5> Joueur : {{joueur.nomJoueur }} {{joueur.prenomJoueur }} </h5>
+                                <h5> Club : {{joueur.idClub.nomClub}} </h5>
+                            {% endif %}
+                        {% endfor %}
+                    </center>
+                    </td>
+
+                    </tr>
+                </table>
+                <br>
+            {% endfor %}
+        {% endif %}
+        <div class="navigation">
+            {{ knp_pagination_render(test) }}
+        </div>
+    </center>
+
+    <script>
+        function clignotement() {
+            if (document.getElementById("MonElement").style.display == "block")
+                document.getElementById("MonElement").style.display = "none";
+            else
+                document.getElementById("MonElement").style.display = "block";
+        }
+        setInterval("clignotement()", 700);
+    </script> 
+{% endblock %}

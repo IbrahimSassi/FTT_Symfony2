@@ -1,0 +1,77 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+                <a class="btn btn-success btn-xs" href="{{path('ajouter_events')}}">
+                    <i class="fa fa-plus"></i> Ajouter Un nouveau événement
+                </a>
+                        <div id="page-content">  
+        <table class="table table-bordered" id="dev-table" >
+                  <thead>
+                        <tr>
+                           
+                            <th>
+                                Titre de l'événement
+                            </th>
+                            <th>
+                                Type de l'événement
+                            </th>
+                            <th>
+                                Date début
+                            </th>
+                            <th>
+                                Date fin
+                            </th>
+                            <th>
+                                Supprimer
+                            </th>
+                            <th>
+                                Modifier
+                            </th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                     
+                        {% for evenement in evenements %}
+                        <tr>
+                           
+                            <td>
+                                {{evenement.nomEvenement}}
+                            </td>
+                            <td>
+                                {{evenement.typeEvenement}}
+                            </td>
+                            <td>
+                                {{evenement.dateDebut|date("d/m/Y")}}
+                            </td>
+                               <td>
+                                {{evenement.dateFin|date("d/m/Y")}}
+                            </td>   
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_events', {'id':evenement.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_events',{'id':evenement.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                     
+        
+                   </div>      
+
+
+
+  
+
+
+        {% endblock %}
+
+
+        

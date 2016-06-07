@@ -1,0 +1,117 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+{% block body %}
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <tr>
+            <td style="border-bottom: #88C425 solid 2px;">
+                <span>Resultats</span></br>
+            </td>
+        </tr>
+    </table>
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <form method="POST" action="">
+            <tr>
+                <td style="border-bottom: #F47920 solid 2px;">
+                    {{form_widget(form.idEvenement)}}
+                </td>
+                <td style="border-bottom: #00B6F1 solid 2px;width: 40%;font-family: 'Oswald', sans-serif;">
+                    <input type="submit" value="Recherche matchs par evenements" class="btn btn-flat" style="width:100%">
+                </td>
+            </tr>
+        </form>
+    </table>
+    <!-- list Match between Players popup START-->
+
+    <!-- list Match between Players popup END-->
+
+
+
+
+
+    <!-- LIST Match  START-->
+    {% for match in matchs %}
+        <div class="col-md-12 animated fadeInDown" style="padding-bottom: 2%"  >
+            <div class="well profile_view"   >
+                <div class="col-xs-12 bottom text-center" style="background-color: #00B5F1;color: white;border-bottom-left-radius: 1em;border-top-left-radius: 1em;font-family: 'Oswald'">
+                    <strong style="color: #EBEBEB"> Date : 
+                        {{match.idMatch.dateMatch | date('d - m - Y')}}<span style="font-size: larger;color: #000"> | </span><strong> Evenement : {{match.idMatch.idEvenement.nomEvenement}}</strong> </strong>
+                </div>
+                <div class="col-md-12 resultat" style="text-align: center"> 
+                    <table class="table-striped table-bordered" style="width: 95%">
+                        <tr >
+                            <td rowspan=4 style="border-bottom: #00aeef solid 2px;">
+                                {% if match.rsltJoueur1 > match.rsltJoueur2 %}
+                                    {% if match.idMatch.idJoueur3 == null and match.idMatch.idJoueur4 == null  %}
+                                        <span style="color: #88C425">{{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}} 
+                                            {{match.rsltJoueur1}} </span>- <span style="color: #D71920">{{match.rsltJoueur2}} 
+                                            {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}</span>
+                                        {% else %}
+                                        <span style="color: #88C425">{{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}} & 
+                                            {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}
+                                            {{match.rsltJoueur1}} </span>- <span style="color: #D71920">{{match.rsltJoueur2}} 
+                                            {{match.idMatch.idJoueur3.nomJoueur}} {{match.idMatch.idJoueur3.prenomJoueur}} & 
+                                            {{match.idMatch.idJoueur4.nomJoueur}} {{match.idMatch.idJoueur4.prenomJoueur}}
+                                        </span>
+
+                                    {% endif %}
+                                {% else %}
+                                    {% if match.idMatch.idJoueur3 == null and match.idMatch.idJoueur4 == null  %}
+                                        <span style="color: #D71920">{{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}} 
+                                            {{match.rsltJoueur1}} </span>- <span style="color: #88C425">{{match.rsltJoueur2}} 
+                                            {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}</span>
+                                        {% else %}
+                                        <span style="color: #D71920">{{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}} & 
+                                            {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}} 
+                                            {{match.rsltJoueur1}} </span>- <span style="color: #88C425">{{match.rsltJoueur2}} 
+                                            {{match.idMatch.idJoueur3.nomJoueur}} {{match.idMatch.idJoueur3.prenomJoueur}} & 
+                                            {{match.idMatch.idJoueur4.nomJoueur}} {{match.idMatch.idJoueur4.prenomJoueur}}</span>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <a class="btn btn-flat" style="width: 100%" href="{{path('rencontres_directes', {'idJoueur1':match.idMatch.idJoueur1.id,'idJoueur2':match.idMatch.idJoueur2.id})}}" >
+                                    Historique</a> </br>
+                               <!-- <a class="btn btn-flat3" href="{{path('evaluation', {'id':match.id})}}">Evaluation</a> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: #00aeef solid 2px;">
+                                {{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}}
+                                {% include 'DCSRatingBundle:Rating:control.html.twig' with {'id' : match.idMatch.idJoueur1.id~'match'~match.id } %}
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}
+                                {% include 'DCSRatingBundle:Rating:control.html.twig' with {'id' : match.idMatch.idJoueur2.id~'match'~match.id} %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-12 bottom text-center" >
+                </div>
+            </div>
+        </div>
+        <div class="md-overlay"></div>
+
+    {% endfor %}
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(matchs) }}
+    </div>
+
+    <!-- list Match end-->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

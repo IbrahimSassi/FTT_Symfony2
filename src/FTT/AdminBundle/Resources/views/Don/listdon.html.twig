@@ -1,0 +1,75 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+
+{% block bodyAdmin %}
+    <a class="btn btn-success btn-xs" href="{{path('ajouter_dons')}}">
+        <i class="fa fa-plus"></i> Ajouter Un nouveau Don
+    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="btn btn-success btn-xs" href="{{path('attribuer_dons_club')}}">
+        <i class="fa fa-plus"></i> Attribuer Un Don à un Club
+    </a>
+    <a class="" style="margin-left: 450px;"href="{{path('list_donsclub')}}">
+        <i class="fa fa-tag" ></i> Liste des dons attribuer aux clubs
+    </a>
+    <table class="table table-bordered" id="dev-table" >
+        <thead>
+            <tr>
+                <th>
+                    Type de don
+                </th>
+                <th>
+                    Description de don
+                </th>
+                <th>
+                    Lieu
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Supprimer
+                </th>
+                <th>
+                    Modifier
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for don in dons %}
+                <tr>
+                    <td>
+                        {{don.typeDon}}
+                    </td>
+                    <td>
+                        {{don.descriptionDon}} 
+                    </td>
+                    <td>
+
+                        {{don.lieuSession}}
+                    </td>
+                    <td>
+                        {{don.dateSession|date("d/m/Y")}}
+
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" href="{{path('supprimer_dons', {'id':don.id})}}">
+                            <i class="fa fa-trash-o"></i> Supprimer</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{path('modifier_dons',{'id':don.id})}}">
+                            <i class="fa fa-pencil"></i> Modifier</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+

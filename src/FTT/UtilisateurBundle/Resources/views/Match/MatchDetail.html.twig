@@ -1,0 +1,310 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+{% block body %}
+
+    {% set pop = gtickets %}    
+    {% if pop == 'ok' %}
+        <script type="text/javascript">
+            alert("Votre ticket vous a été envoyé par mail ");
+        </script>
+    {% elseif pop == 'nbrticketinsuf' %}
+        <script type="text/javascript">
+            alert(" Le nombre de ticket que vous essayez de voir est indisponible ");
+        </script>
+    {% elseif pop == 'zeroTicket' %}
+        <script type="text/javascript">
+            alert(" Veuillez préciser un nombre de ticket correct ");
+        </script>
+    {% elseif pop == 'pasArgent' %}
+        <script type="text/javascript">
+            alert(" Votre solde est insuffisant ");
+        </script>
+    {% endif %}
+
+
+
+
+
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <tr>
+            <td style="border-bottom: #88C425 solid 2px;">
+                <span>Matchs</span> : {{evenement}}</br>
+            </td>
+        </tr>
+    </table>
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <form method="POST" action="">
+            <tr>
+
+                <td style="border-bottom: #F47920 solid 2px;">
+                    {{form_widget(form.idEvenement)}}
+                </td>
+                <td style="border-bottom: #00B6F1 solid 2px;width: 40%;;font-family: 'Oswald', sans-serif;">
+                    <input type="submit" value="Recherche matchs par evenements" class="btn btn-flat" style="width:100%">
+                </td>
+            </tr>
+        </form>
+    </table>
+
+
+
+
+
+    <!-- Detail Match popup START-->
+    {% for key,match in matchs %}
+
+        {% set PrctVictoirJ1 = match.idJoueur1.nbVictoires/(match.idJoueur1.nbVictoires+match.idJoueur1.nbDefaite)*100  %}
+        {% set PrctVictoirJ2 = match.idJoueur2.nbVictoires/(match.idJoueur2.nbVictoires+match.idJoueur2.nbDefaite)*100  %}
+
+
+
+        <div style="background-color: #D8D8D8; border: #000 solid thin;width: 1000px" class="md-modal md-effect-11" id="modal-{{match.id}}">
+            <div style="padding-left: 0%" class="md-content">
+                <h3><i class="fa fa-info-circle" style="color: black"></i> Informations :</h3>
+                <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" >
+                    <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+                        <img  style="width: 250px; height: 350px;margin-left: -60%" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs1[key]}}" >
+                    </div>
+                    <div class="col-md-8 col-xs-8 col-lg-8 col-sm-8">
+
+                        <h5>Date : {{match.dateMatch | date('d/m/Y')}}</h5>
+
+                        <h5>Arbitre : {{match.idArbitre.nomUser}} {{match.idArbitre.PrenomUser}}
+
+                            <h5>Stade : {{match.idStade.nomStade}} </h5>
+
+                            <h5>Evenement : {{match.idEvenement.nomEvenement}} </h5>
+                            {% set var = path('rencontres_directes', {'idJoueur1':match.idJoueur1.id,'idJoueur2':match.idJoueur2.id}) %}                                    
+                            <h5>  <a href="{{path('rencontres_directes', {'idJoueur1':match.idJoueur1.id,'idJoueur2':match.idJoueur2.id})}}">Recontres directes</a>  </h5>
+                            <div >
+                                <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" >
+                                    <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
+                                        <span style="font-size: small">{{match.idJoueur1.nomJoueur}} </span></br>
+                                        <span>   {{match.idJoueur1.prenomJoueur}}</span> 
+                                        <div class="progress" style="border: #000 1%">
+                                            <div class="progress-bar progress-bar-striped active progress-bar-success" role="progressbar" 
+                                                 style="width:{{ PrctVictoirJ1 | round }}%">
+                                                {{match.idJoueur1.nbVictoires}} ({{ PrctVictoirJ1 | round }}%)
+                                            </div>
+                                            <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar" 
+                                                 style="width: {{ 100-(PrctVictoirJ1 | round) }}%">
+                                                {{match.idJoueur1.nbDefaite}} ({{ 100 - (PrctVictoirJ1 | round) }}%)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
+                                        <span style="font-size: small">{{match.idJoueur2.nomJoueur}} </span></br>
+                                        <span>   {{match.idJoueur2.prenomJoueur}}</span> 
+                                        <div class="progress" style="border: #000 1%">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" 
+                                                 style="width:{{ PrctVictoirJ2 | round }}%">
+                                                {{match.idJoueur2.nbVictoires}} ({{ PrctVictoirJ2 | round }}%)
+                                            </div>
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" 
+                                                 style="width:{{ 100-(PrctVictoirJ2 | round) }}%">
+                                                {{match.idJoueur2.nbDefaite}} ({{ 100-(PrctVictoirJ2 | round) }}%)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-left: 35%">
+                                    <i class="fa fa-square" style="color: #4AA44A"></i> Victoires    
+                                    <i class="fa fa-square" style="color: #D03F3B"></i> Defaites 
+
+                                </div>
+                            </div>
+                            <div style="padding-bottom: 8%">
+
+                                <div class="col-md-12" >
+                                    <div class="col-md-6">
+                                        <i class="fa fa-list-ol" style="color: #000"></i>
+                                        Classement National : {{match.idJoueur1.classementNational}} <br>
+                                        Classement International : {{match.idJoueur1.classementInternational}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        Classement National : {{match.idJoueur2.classementNational}} <br>
+                                        Classement International : {{match.idJoueur2.classementInternational}}
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+                        <img   style="width: 250px; height: 350px; margin-left: -60%" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs2[key]}}" >
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg md-close" >Close me!</button>
+            </div>
+        </div>
+    {% endfor %}              
+    <!-- Detail Match popup END-->
+
+
+
+
+    <!-- list Match between Players popup START-->
+
+    <!-- list Match between Players popup END-->
+
+
+
+
+
+    <!-- LIST Match  START-->
+    {% for match in matchs %}
+        <div class="col-md-12 animated fadeInDown"   >
+            <div class="well profile_view"  >
+                <div class="col-xs-12 bottom text-center" style="background-color: #00B5F1;color: white;border-bottom-left-radius: 1em;border-top-left-radius: 1em">
+                    <strong> <i class="fa fa-male"></i>  
+                        {% if match.idJoueur3 == null and match.idJoueur4 == null  %}
+                            {{match.idJoueur1.nomJoueur}} {{match.idJoueur1.prenomJoueur}}
+                        {% else %}
+                            {{match.idJoueur1.nomJoueur}} {{match.idJoueur1.prenomJoueur}} & 
+                            {{match.idJoueur2.nomJoueur}} {{match.idJoueur2.prenomJoueur}}
+                        {% endif %}
+                    </strong>
+                </div>
+                <div class="col-md-5">
+                    <div class="text-center" style="padding-top: 2%;padding-bottom: 8%">
+                        {% if match.idJoueur3 == null and match.idJoueur4 == null  %}
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs1[loop.index-1]}}" >
+
+                        {% else %}
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs1[loop.index-1]}}" >
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs2[loop.index-1]}}" >
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="text-center" style="padding-top: 50%;padding-bottom: 8%">
+                        <img src="{{asset('img/vs.jpg')}}" alt="Img" width="25px" height="25px">
+
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="text-center" style="padding-top: 2%;padding-bottom: 8%">
+                        {% if match.idJoueur3 == null and match.idJoueur4 == null  %}
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs2[loop.index-1]}}" >
+                        {% else %}
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs3[loop.index-1]}}" >
+                            <img class="img-thumbnail"  style="width: 85px; height: 110px;" alt="Embedded Image" src="data:image/png;base64,{{imagesjoueurs4[loop.index-1]}}" >
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-12 bottom text-center" style="background-color: #00B5F1;color: white;border-bottom-left-radius: 1em;border-top-left-radius: 1em">
+                    <strong><i class="fa fa-male"></i> 
+                        {% if match.idJoueur3 == null and match.idJoueur4 == null  %}
+                            {{match.idJoueur2.nomJoueur}} {{match.idJoueur2.prenomJoueur}}
+                        {% else %}
+                            {{match.idJoueur3.nomJoueur}} {{match.idJoueur3.prenomJoueur}} & 
+                            {{match.idJoueur4.nomJoueur}} {{match.idJoueur4.prenomJoueur}}
+                        {% endif %}
+                    </strong>
+                </div>
+                <div class="col-xs-12 bottom text-center" style="background-color: #F2F5F7;margin-top: 0.2%;margin-bottom: 0.5%;" >
+                    <button class="md-trigger btn-flat2" data-modal="modal-{{match.id}}"><i class="fa fa-info-circle"></i> 
+                        Information </button>
+
+                    <span style="margin-left: 15%">
+
+                        {% set break = 0 %}
+                        {% set prix = -1 %}
+                        {% set idTicket = -1 %}
+                        {% for ticket in tickets %}
+                            {% if ticket.idMatch.id == match.id and ticket.nbrTicket > 0 and "now"|date('Ymd')  < match.dateMatch|date('Ymd')%}
+                                {% set break = 1 %}
+                                {% set prix = ticket.prixTicket %}
+                                {% set idTicket = ticket.id %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if break == 1 %}
+                            <a id="show-{{match.id}}"
+                               style="font-size: 2em; color:#00B417;" 
+                               class="fa fa-shopping-cart"
+                               aria-hidden="true" ></a>
+                        {% else %}
+                            <i class="fa fa-shopping-cart fa-2x" style="color:red" aria-hidden="true"></i>
+                        {% endif %}
+
+                    </span>
+                    <div id="div2-{{match.id}}" style="margin-right: 60%">                                              
+                        {% if  idTicket != -1 %}
+                            {% if app.user  %}
+                                <form method="POST" action="{{path('consulter_matchs2',{'idTicket':idTicket})}}">
+                                    <table>
+                                        <tr align="center">
+                                            <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nombre de tickets :&nbsp;&nbsp;</td>
+                                            <td><br>
+                                                <input type="number" name="nbrs" id="nbrs" min="0" max="100" value="1" required="required"> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                                <label><input type="radio" name="choix-ticket" id="choix-ticket" value="reserver" required="required"> Reserver</label>
+                                            </td>
+                                            <td><br>
+                                                <label><input type="radio" name="choix-ticket" id="choix-ticket" value="acheter" required="required"> Acheter</label>
+                                        </tr>
+                                        <tr>
+
+                                        <span style="font-size: 200%; color:green;">   {{ prix }}</span>
+                                        <i class="fa fa-money fa-2x" style="color:green"></i>
+                                        </tr>
+                                    </table>
+
+                                    <button class="fa fa-check" style="margin-left: 25%;font-size: 2em;"></button>
+                                </form>
+                            {% else %}
+                                <span style="font-size: 200%; color:green;"> Prix du ticket  {{ prix }}</span>
+                                <i class="fa fa-money fa-2x" style="color:green"></i><br>
+                                <a href="{{path('fos_user_security_login')}}"> Veuillez vous connecter pour acheter/reserver votre ticket</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </div>                        
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="md-overlay"></div>
+
+    {% endfor %}
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(matchs) }}
+    </div>
+
+    <!-- list Match  end-->
+
+    <script language="javascript" src="{{asset('js/jQuery/jquery-2.2.0.js')}}"></script>
+    <script>
+            $(document).ready(
+                    function () {
+        {% for match in matchs %}
+                        $("#div2-{{match.id}}").hide();
+                        $("#show-{{match.id}}").click(
+                                function () {
+                                    $("#div2-{{match.id}}").slideToggle();
+                                });
+
+        {% endfor %}
+                    });
+
+    </script>
+
+
+
+
+
+
+
+{% endblock %}

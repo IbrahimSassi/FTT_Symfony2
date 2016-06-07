@@ -1,0 +1,98 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+
+{% block body%}
+    <style>
+  
+    
+    
+ 
+    </style>
+
+
+
+    <h1> Classement National </h1>
+      <div class="row">	
+              {% set i=0 %}
+              {% for key,joueur in joueurs if i<3%}
+                  
+               <div class="col-md-3 col-sm-3 mix category_1">
+        
+              <div>
+                  
+             
+		
+	
+                  <img class="img-thumbnail" src="data:image/png;base64,{{ imagestroisJoueurs[key] }}" alt="" height="150px" width="120px" />
+                      {% set i= i+1 %}
+                      <br/>
+              </div>
+               </div>
+                      
+        {% endfor %}
+      </div>
+                      
+
+                    <br>
+                    <br>
+
+
+                    <table class="table table" colspan="2">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Num
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+                                    Joueur
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+                                    Club
+                                </th>
+                               
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                      
+                                {% for key,joueur in joueurs %}
+
+                                    <tr>
+                                        <td>
+                                                {{joueur.classementNational}}
+                                            </td>
+
+                                            <td >
+                                                <img class="img-responsive" src="data:image/png;base64,{{ imagesJoueurs[key] }}" width="50px" height="150px" alt="" />
+
+                                            </td>
+
+
+                                            <td >
+                                                {{joueur.nomJoueur}}  {{joueur.prenomJoueur}}
+                                            </td>
+                                            <td width="2">
+                                                <img class="img-responsive" src="data:image/png;base64,{{ imagesClubs[key] }}" width ="20px" alt="" />
+
+                                            </td>
+                                            <td>
+                                                {{joueur.idClub.nomClub}}
+                                            </td>
+                                           
+
+                                        </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+
+                                    {% endblock %}
+
+

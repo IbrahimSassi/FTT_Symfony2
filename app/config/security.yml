@@ -1,0 +1,59 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ARBITRE: ROLE_ARBITRE
+        ROLE_MEDECIN: ROLE_MEDECIN
+        ROLE_RESPONSABLE: ROLE_RESPONSABLE
+        ROLE_ADHERENT: ROLE_ADHERENT
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        my_custom_hwi_provider:
+             id: ib_user.oauth_user_provider
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                success_handler: redirect.after.login
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+
+            logout: 
+                invalidate_session : true
+                path:   /logout
+                success_handler: redirect.after.logout
+            anonymous: true
+            
+            
+            oauth:
+                resource_owners:
+                    google:        /login/check-google
+                    facebook:      /login/check-facebook
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+                default_target_path: /ftt/accueil
+                oauth_user_provider:
+                    service: ib_user.oauth_user_provider
+            
+            
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/medecin/, role: ROLE_MEDECIN }
+        - { path: ^/arbitre/, role: ROLE_ARBITRE }
+        - { path: ^/responsable/, role: ROLE_RESPONSABLE }
+        - { path: ^/adherent/, role: ROLE_ADHERENT }

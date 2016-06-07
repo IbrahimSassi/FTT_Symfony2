@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Ticket FTT</title>
+    </head>
+    <body>
+        <table >
+            <table >
+                <tr> <td> <img  src='https://scontent-fra3-1.xx.fbcdn.net/v/t1.0-9/13102876_1069633196431500_2969944748775894440_n.jpg?oh=034029c98f88e846a0aea515fab771d2&oe=57E1CBF2' alt='QR Code'/></td><td>
+                        <h2><div >Match : {{match.idJoueur1.nomJoueur}}
+                                {% if match.idJoueur3 != null %}
+                                    {{match.idJoueur3.nomJoueur}}
+                                {% endif %}
+                                VS {{match.idJoueur2.nomJoueur}} 
+                                {% if match.idJoueur4 != null %}
+                                    {{match.idJoueur4.nomJoueur}}
+                                {% endif %}</div>
+                            <div >Nom & prenom : {{app.user.nomUser}} {{app.user.prenomUser}}</div>
+                            <div >Date : {{match.dateMatch | date('d/m/Y')}}</div>
+                            <div >Prix : {{prix}} </div>
+                            <div>Etat : {{etat}}</div></h2>
+                    </td> </tr></table>
+        </table>
+    <body>
+</html>

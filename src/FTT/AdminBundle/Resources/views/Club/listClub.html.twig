@@ -1,0 +1,72 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+                <a class="btn btn-success btn-xs" href="{{path('ajouter_club')}}">
+                    <i class="fa fa-plus"></i> Ajouter Un nouveau club
+                </a>
+                <table class="table table-bordered" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Logo
+                            </th>
+                            <th>
+                                Date de fondation
+                            </th>
+                             <th>
+                                Adresse
+                            </th>
+                            <th>
+                                Supp
+                            </th>
+                            <th>
+                                MAJ
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key,club in clubs %}
+                        <tr>
+                            <td>
+                                {{club.id}}
+                            </td>
+                            <td>
+                                {{club.nomClub}}
+                            </td>
+                            <td>
+                                <img class="img-responsive" src="data:image/png;base64,{{ LogosClubs[key] }}" alt="" />
+                            </td>
+                            <td>
+                                {{club.dateFondation|date("d/m/Y")}}
+                            </td>
+                             <td>
+                                {{club.adresseClub}}
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_club', {'id':club.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_club',{'id':club.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                        
+
+        {% endblock %}
+
+
+        

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Basic -->
+        <meta charset="utf-8">
+        <title>Fédération Tunisienne de Tennis</title>
+        <meta name="keywords" content="TFT FTT" />
+        <meta name="description" content="FTT Federation Tunisienne De Tennis">
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Theme CSS -->
+        <link href="{{asset('css/style.css')}}" rel="stylesheet" media="screen">
+        <!-- Responsive CSS -->
+        <link href="{{asset('css/theme-responsive.css')}}" rel="stylesheet" media="screen">
+        <!-- Skins Theme -->
+        <link href="#" rel="stylesheet" media="screen" class="skin">
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{asset('img/icons/tennis.ico')}}">
+        <link rel="apple-touch-icon" href="{{asset('img/icons/apple-touch-icon.png')}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/icons/apple-touch-icon-72x72.png')}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('img/icons/apple-touch-icon-114x114.png')}}">  
+        <link href="{{asset('dashboardStyle/css/icheck/flat/green.css')}}" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/dcsrating/css/rating.css') }}" />
+
+        <!-- Skins Changer-->
+
+    </head>
+
+    <body style="font-family: 'Oswald'">
+
+        <!-- layout-->
+        <div id="layout">
+            <!-- Header-->
+            <header>
+                <!-- End headerbox-->
+                <div class="headerbox">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Logo-->
+                            <div class="col-md-6 logo">
+                                <a href="{{path('ftt_utilisateur_homepage')}}" title="Return Home">                            
+                                    <img src="{{asset('img/logo1.png')}}" alt="Logo" class="logo_img">
+                                </a>
+
+                            </div>
+                            {% if app.user == null %}
+                                <div class="col-md-6 adds">
+                                    <a class="btn btn-flat4" style="width: 22%" href="{{path('fos_user_security_login')}}" >
+                                        <i class="fa fa-sign-in"></i>
+                                        Se connecter</a>
+                                    <a class="btn btn-flat4"  style="width: 22%" href="{{path('fos_user_registration_register')}}" >
+                                        <i class="fa fa-plus"></i>
+                                        S'inscrire</a>
+                                </div>
+                            {% endif %}
+                            {% if app.user != null %}
+                                <div class="col-md-6 adds">
+                                    <a class="btn btn-flat5" style="width: 22%" href="{{path('fos_user_security_logout')}}" >
+                                        <i class="fa fa-sign-out"></i>
+                                        Deconnecter</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- End headerbox-->  
+
+                {% block MenuSite %}
+                    {{ include('FTTUtilisateurBundle::Default/Includes/MenuSite.html.twig') }}
+                {% endblock %}
+
+
+                <!-- End mainmenu-->
+            </header>
+            <!-- End Header-->
+
+            <!-- Section Title -->           
+            <section class="section-title img-news">
+                <div class="overlay-bg"></div>
+                <div class="container">
+                    <h1>FTT</h1>
+                </div>
+            </section>
+            <!-- End Section Title --> 
+
+            <!-- Section Area - Content Central -->
+            <section class="content-info">
+
+                <!--
+                <div class="crumbs">
+                    <div class="container">
+                        <ul>
+                            <li><a href="index-2.html">Home</a></li>
+                            <li>/</li>
+                            <li><a href="#">News</a></li>
+                            <li>/</li>
+                            <li>News Right Sidebar</li>                                       
+                        </ul>
+                    </div>        
+                </div>
+                -->
+
+                <div class="semiboxshadow text-center">
+                    <img src="{{asset('img/img-theme/shp.png')}}" class="img-responsive" alt="">
+                </div>
+
+
+                <!-- Content Central -->
+                <div class="container padding-top">
+                    <div class="row">
+
+                        <!-- content Column Left -->
+                        <div class="col-md-8">   
+
+
+                            {% block body %}
+                                <!--
+                               Edmouuuuuuuuu hnéééééééééééééééééééééé akahaaaaaaaaaaaaaww 
+                                
+                                
+                                matmessouuuuuuuuuuuuuuuuuuu chayyyyyyyyyyyyyyyyyyyyyyyyy e5eeeeeeeeeeerrrrrrrrrrrrrrrrr
+                                aaaaaaaaaaa
+                                
+                                biensur mouch ma3néha , il faut creer dautres pages twig et utiliser
+                                le block body , Voir lexemple
+                                -->
+                            {% endblock %}
+
+
+
+
+
+
+                        </div>
+                        <!-- End content Left -->
+
+                        <!-- content Sidebar Center -->
+                        <aside class="col-md-4">                     
+
+                            <div>
+                                <h4>Searh Sidebar</h4>
+                                <form class="search" action="#" method="Post">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Search..." name="email"  type="email" required="required">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="submit" name="subscribe" >Go!</button>
+                                        </span>
+                                    </div>
+                                </form>   
+                            </div>
+
+                            <!-- Video presentation -->
+                            <div class="panel-box">
+                                <div class="titles">
+                                    <h4>Bientot</h4>
+                                </div>
+                                <!-- Locations Video --> 
+                                <div class="row">
+                                    <iframe src="https://www.youtube.com/embed/sQ-na9D-DEI" class="video"></iframe>
+                                    <div class="col-md-12">
+                                        <h4>Tunis Open</h4>
+                                        <p>Le Tournoi de tennis de Tunis ou Tunis Open est un tournoi de tennis appartenant aux tournois Challenger de l'ATP World Tour. Il est organisé au Tennis Club de Tunis.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- End Locations Video --> 
+                            </div>  
+                            <!-- End Video presentation-->
+                            <!-- End Video presentation-->
+
+                            <!-- Widget Text-->
+                            <div class="panel-box">
+                                <script>(function (d, s, id) {
+
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+
+                                        if (d.getElementById(id))
+                                            return;
+
+                                        js = d.createElement(s);
+                                        js.id = id;
+
+                                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=403924843027405";
+
+                                        fjs.parentNode.insertBefore(js, fjs);
+
+                                    }(document, 'script', 'facebook-jssdk'));
+                                </script>
+                                <div class="fb-like-box" data-href="https://www.facebook.com/FederationTunisienneDeTennis" 
+                                     data-width="362" data-show-faces="true" data-stream="true" data-header="true"></div>
+                            </div>  
+                            <!-- End Widget Text-->
+
+                            <!-- Widget Text-->
+                            <!-- End Widget Text-->
+                        </aside>
+                        <!-- End content Sidebar Center -->
+                    </div>                     
+                </div>  
+                <!-- End Content Central -->
+
+                <!-- Newsletter -->
+                <div class="section-wide">
+                    <div class="container">
+                        <div class="row newsletter">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <h2>Enter your e-mail and <span class="text-resalt">subscribe</span> to our newsletter.</h2>
+                                    <p>Duis non lorem porta,  eros sit amet, tempor sem. Donec nunc arcu, semper a tempus et, consequat.</p>
+                                </div>
+                                <form id="newsletterForm" action="http://html.iwthemes.com/sportscup/php/mailchip/newsletter-subscribe.php">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-envelope"></i>
+                                                </span>
+                                                <input class="form-control" placeholder="Your Name" name="name"  type="text" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-envelope"></i>
+                                                </span>
+                                                <input class="form-control" placeholder="Your  Email" name="email"  type="email" required="required">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary" type="submit" name="subscribe" >SIGN UP</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>   
+                                <div id="result-newsletter"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- End Newsletter -->  
+            </section>
+            <!-- End Section Area -  Content Central -->
+
+            <!-- footer-->
+            {% block footer %}
+                {{ include('FTTUtilisateurBundle::Default/Includes/footer.html.twig') }}
+            {% endblock %}
+
+            <!-- footer Down-->
+
+        </div>
+        <!-- End layout-->
+
+        <!-- ======================= JQuery libs =========================== -->
+        <!-- jQuery local--> 
+        <script src="{{asset('js/jquery.js')}}"></script>                
+        <script src="{{asset('js/jquery.min.js')}}"></script>     
+        <script src="{{asset('dashboardStyle/js/icheck/icheck.min.js')}}"></script>
+        <!--Nav-->
+        <script type="text/javascript" src="{{asset('js/nav/tinynav.js')}}"></script> 
+        <script type="text/javascript" src="{{asset('js/nav/hoverIntent.js')}}"></script>   
+        <script type="text/javascript" src="{{asset('js/nav/superfish.js')}}"></script> 
+        <script src="{{asset('js/nav/jquery.sticky.js')}}" type="text/javascript"></script>    
+        <!--Totop-->
+        <script type="text/javascript" src="{{asset('js/totop/jquery.ui.totop.js')}}" ></script>  
+        <!--Accorodion-->
+        <script type="text/javascript" src="{{asset('js/accordion/accordion.js')}}" ></script>  
+        <!--Slide-->
+        <script type="text/javascript" src="{{asset('js/slide/camera.js')}}" ></script>      
+        <script type="text/javascript" src="{{asset('js/slide/jquery.easing.1.3.min.js')}}"></script>   
+        <!-- Maps -->
+        <script src="{{asset('js/maps/gmap3.js')}}"></script>            
+        <!--Ligbox--> 
+        <script type="text/javascript" src="{{asset('js/fancybox/jquery.fancybox.js')}}"></script> 
+        <!-- carousel.js-->
+        <script src="{{asset('js/carousel/carousel.js')}}"></script>
+        <!-- Filter -->
+        <script src="{{asset('js/filters/jquery.isotope.js')}}" type="text/javascript"></script>
+        <!-- Twitter Feed-->
+        <script src="{{asset('js/twitter/jquery.tweet.js')}}"></script> 
+        <!-- flickr Feed-->
+        <script src="{{asset('js/flickr/jflickrfeed.min.js')}}"></script> 
+        <!-- Counter -->
+        <script src="{{asset('js/counter/jquery.countdown.js')}}"></script>      
+        <!-- Graphe -->
+        <script src="{{asset('js/graphe/exporting.js')}}"></script>      
+        <script src="{{asset('js/graphe/highcharts.js')}}"></script>      
+        <!--Theme Options-->
+        <script type="text/javascript" src="{{asset('js/theme-options/theme-options.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/theme-options/jquery.cookies.js')}}"></script> 
+        <!-- Bootstrap.js-->
+        <script type="text/javascript" src="{{asset('js/bootstrap/bootstrap.js')}}"></script> 
+        <!--MAIN FUNCTIONS-->
+        <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+        <!-- ======================= End JQuery libs =========================== -->
+        <script src="{{asset('js/modernizr.js')}}"></script>
+
+
+        <script src="{{asset('js/popup/classie.js')}}"></script>
+        <script src="{{asset('js/popup/modalEffects.js')}}"></script>
+
+        <script>
+                                    // this is important for IEs
+                                    var polyfilter_scriptpath = '/js/';
+        </script>
+        <script src="{{asset('js/popup/cssParser.js')}}"></script>
+        <script src="{{asset('js/popup/css-filters-polyfill.js')}}"></script>
+
+
+
+        <script type="text/javascript" src="{{asset('bundles/dcsrating/js/rating.js')}}"></script>
+
+        <script type="text/javascript" src="{{asset('js/googleapi/googleapi.js')}}"></script>
+        <script type="text/javascript" src="{{asset('ajax/Ajax.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/pari/nbjoker.js')}}"></script>
+
+
+
+
+
+    </body>
+
+    <!-- Mirrored from html.iwthemes.com/sportscup/news-right-sidebar.html?theme=red by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Mar 2016 10:29:48 GMT -->
+</html>

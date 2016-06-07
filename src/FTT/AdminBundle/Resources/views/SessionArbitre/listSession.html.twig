@@ -1,0 +1,73 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+
+
+                <a class="btn btn-success btn-xs" href="{{path('SessionArbitre_add')}}">
+                    <i class="fa fa-plus"></i> Ajouter Une nouvelle session de formation
+                </a>
+                <table class="table table-bordered" id="dev-table" >
+                    <thead>
+                        <tr>
+                            <th>
+                                Date Session 
+                            </th>
+                            <th>
+                                Type Session
+                            </th>
+                            <th>
+                                Lieu Session
+                            </th>
+                            <th>
+                                Date Ouvert Depot
+                            </th>
+                            <th>
+                                Date Cloture Depot
+                            </th>
+                            <th>
+                                NB d'arbitres
+                            </th>
+                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in sessions %}
+                        <tr>
+                            <td>
+                                {{session.dateSessionArbitre|date('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{session.typeSessionArbitre}}
+                            </td>
+                            <td>
+                                {{session.lieuSessionArbitre}}
+                            </td>
+                            <td>
+                                {{session.dateOuvertDepot|date('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{session.dateClotureDepot|date('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{session.nbArbitreSession}}
+                            </td>
+                           
+                           
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('SessionArbitre_delete', {'id':session.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('SessionArbitre_modify',{'id':session.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+ftt_adherent_homepage:
+    path:     /saisipaiement
+    defaults: { _controller: FTTAdherentBundle:Paiement:index }
+    
+point_adherent:
+    path:     /point
+    defaults: { _controller: FTTAdherentBundle:Point:affichage }
+    
+vente_point:
+    path:     /VentePoint
+    defaults: { _controller: FTTAdherentBundle:Point:vente }
+    
+ticket_user:
+    path:     /ticket
+    defaults: { _controller: FTTAdherentBundle:Ticket:affichage }
+    
+acheter_ticket:
+    path:     /validerTicket/{id}
+    defaults: { _controller: FTTAdherentBundle:Ticket:acheter }
+    
+supprimer_ticket:
+    path:     /annulerTicket/{id}
+    defaults: { _controller: FTTAdherentBundle:Ticket:annuler }
+    
+list_resultat_pronostic:
+    path:     /listResultatPronostic
+    defaults: { _controller: FTTAdherentBundle:PronosticAdherent:ListResultatPronostic }
+recevoir_point:
+    path:     /RecevoirPoint/{imei}
+    defaults: { _controller: FTTAdherentBundle:PronosticAdherent:RecevoirPoint }
+    
+    
+    #profil ...
+consulter_profil_adherent:
+    path: /profilAdherent
+    defaults: { _controller: FTTAdherentBundle:Profil:Profil}
+
+modifier_profil_adherent:
+    path: /modifierProfilAdherent
+    defaults: { _controller: FTTAdherentBundle:Profil:EditProfil}
+    
+update_profil_adherent:
+    path: /updateProfilAdherent
+    defaults: { _controller: FTTAdherentBundle:Profil:UpdateProfil}
+    
+#syrine
+
+succes_recharge:
+    path:     /succes
+    defaults: { _controller: FTTAdherentBundle:Paiement:completedPayment }
+succes:
+    path:     /messagesucces
+    defaults: { _controller: FTTAdherentBundle:Default:succes }
+echec_recharge:
+    path:     /echec
+    defaults: { _controller: FTTAdherentBundle:Default:echec }
+paiement:
+    path:     /paiement
+    defaults: { _controller: FTTAdherentBundle:Paiement:payment }
+paiement_path:
+    path:     /test
+    defaults: { _controller: FTTAdherentBundle:Paiement:index }
+
+envoie_ticket:
+    path:     /envoieTicket/{id}
+    defaults: { _controller: FTTAdherentBundle:Ticket:envoi }
+    

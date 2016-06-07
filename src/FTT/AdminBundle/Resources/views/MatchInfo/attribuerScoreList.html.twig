@@ -1,0 +1,73 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+
+{% block bodyAdmin %}
+    <div class="col-md-12">
+        <h1> Matchs sans score :</h1>
+    </div>
+    <table class="table table-bordered" id="dev-table">
+        <thead>
+            <tr>
+                <th>
+                    Date Match
+                </th>
+                <th>
+                    Type Match
+                </th>
+                <th>
+                    Arbitre
+                </th>
+                <th>
+                    Nom Joueur1
+                </th>
+                <th>
+                    Nom Joueur2
+                </th>
+                <th>
+                    Nom Joueur3
+                </th>
+                <th>
+                    Nom Joueur4
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matchs %}
+                <tr>
+                    <td>
+                        {{match.dateMatch|date('d-m-Y')}}
+                    </td>
+                    <td>
+                        {{match.typeMatch}}
+                    </td>
+                    <td>
+                        {{match.idArbitre.nomUser}}
+                    </td>
+                    <td>
+                        {{match.idJoueur1.nomJoueur}}
+                    </td>
+                    <td>
+                        {{match.idJoueur2.nomJoueur}}
+                    </td>
+                    <td>
+                        null
+                    </td>
+                    <td>
+                        null
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{path('Attribuer_Score',{'idMatch':match.id,'idJoueur1':match.idJoueur1.id,'idJoueur2':match.idJoueur2.id})}}">
+                            <i class="fa fa-pencil"></i> Attribuer un score</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+

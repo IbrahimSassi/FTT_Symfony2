@@ -1,0 +1,96 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+{% block header1 %}
+    {{ include('FTTAdminBundle::Default/Includes/header.html.twig') }}
+{% endblock %}
+
+{% block bodyAdmin %}
+    <a class="btn btn-success btn-xs" href="{{path('ajouter_matchInfo')}}">
+        <i class="fa fa-plus"></i> Ajouter Un nouveau Match
+    </a>
+    <table class="table table-bordered" id="dev-table" >
+        <thead>
+            <tr>
+                <th>
+                    Date Match
+                </th>
+                <th>
+                    Type Match
+                </th>
+                <th>
+                    Arbitre
+                </th>
+                <th>
+                    Nom Joueur1
+                </th>
+                <th>
+                    Nom Joueur2
+                </th>
+                <th>
+                    Nom Joueur3
+                </th>
+                <th>
+                    Nom Joueur4
+                </th>
+                <th>
+                    Stade
+                </th>
+                <th>
+                    Evenement
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matchs %}
+                <tr>
+                    <td>
+                        {{match.dateMatch|date('d-m-Y')}}
+                    </td>
+                    <td>
+                        {{match.typeMatch}}
+                    </td>
+                    <td>
+                        {{match.idArbitre.nomUser}}
+                    </td>
+                    <td>
+                        {{match.idJoueur1.nomJoueur}}
+                    </td>
+                    <td>
+                        {{match.idJoueur2.nomJoueur}}
+                    </td>
+                    <td>
+                        null
+                    </td>
+                    <td>
+                        null
+                    </td>
+                    <td>
+                        {{match.idStade.nomStade}}
+                    </td>
+                    <td>
+                        {{match.idEvenement.nomEvenement}}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" href="{{path('supprimer_matchInfo', {'id':match.id})}}" 
+                           onclick="new PNotify({
+                                       title: 'Suppression Effectué',
+                                       text: 'Votre match a eté supprimé avec succes!',
+                                       type: 'success'
+                                   });">
+                            <i class="fa fa-trash-o"></i> Supprimer</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{path('modifier_matchInfo',{'id':match.id})}}">
+                            <i class="fa fa-pencil"></i> Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+

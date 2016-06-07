@@ -1,0 +1,25 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+{% block bodyAdmin %}
+
+    <h1>Ajout d'un Article</h1> 
+    <div class="col-md-8" style="margin-left: 15%;margin-right: 2%;">
+        {# {{form(Form)}}#}
+        <form method="POST" action="" {{ form_enctype(Form) }} onsubmit="new PNotify({
+                            title: 'Ajout Effectué',
+                            text: 'Votre actualité a eté ajouté avec succes!',
+                            type: 'success'
+                        });"> 
+            {{form_widget(Form)}}
+            <div class="ln_solid" style="margin-top: 2%"> </div>
+            <div class="form-group">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
+                    <input type="submit" value="Valider" class="btn btn-flat2 bg-blue-sky">
+                    <a href="{{path('list_actualite')}}"  class="btn btn-danger">Retour</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

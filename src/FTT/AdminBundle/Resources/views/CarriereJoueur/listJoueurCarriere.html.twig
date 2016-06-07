@@ -1,0 +1,49 @@
+  
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+
+{% block bodyAdmin %}
+
+    <div class="row">	
+        {% for key,joueur in joueurs %}
+
+            <div class="col-md-6 col-sm-4 mix category_1">
+
+                <div>
+
+
+
+
+                    <img class="img-thumbnail" src="data:image/png;base64,{{ imagesJoueurs[key] }}" alt="" height="80px" width="120px" />
+                    </a>
+                    <br/>
+                </div>
+
+                <div class="mix-details">
+                    <table class="table table-striped table-bordered table-hover" id="dev-table">
+
+                        <tr>
+                            <th>Joueur</th>
+                            <td>{{joueur.nomJoueur}} {{joueur.prenomJoueur}}</td>
+                        </tr>
+                        <tr>
+                            <th>Afficher carrière </th>
+                            <td> 
+
+                                <a class="btn btn-sm green filter-submit margin-bottom" href="{{path('detail_Carriere_Joueur', {'id':joueur.id})}}" ><i class="fa fa- fa-globe"></i> Cliquez ici </a>	
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "FTTResponsableBundle::layoutResponsable.html.twig" %}
+{% block bodyAdmin %}   
+
+    {% if resultatTests is empty %}
+        <br><br><br>
+
+
+        <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+            <h1 align='center' style='color:red;'> Vous n'avez aucun test en cours </h1></font> 
+        </div> 
+    {% else %}
+        <marquee id="id1">
+            <span onmouseover="getElementById('id1').stop();" onmouseout="getElementById('id1').start();">
+                <h3><i class="fa fa-hashtag" style="color: green"> Les Test que vous avez commandé&nbsp</i><i class="fa fa-hashtag" style="color: green"></i></h3>
+            </span>
+        </marquee>
+
+
+        <table class="table table-striped table-hover" style="font-family: 'Exo';text" >
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        Complexe
+                    </th>
+                    <th style="text-align: center;">
+                        Stade
+                    </th>
+                    <th style="text-align: center;">
+                        Evenement
+                    </th>
+                    <th style="text-align: center;">
+                        DateMatch
+                    </th>
+                    <th style="text-align: center;">
+                        Joueur
+                    </th>
+                    <th style="text-align: center;">
+                        Club 
+                    </th>
+                    <th style="text-align: center;">
+                        Resultat
+                    </th>
+                    <th style="text-align: center;">
+                        Compte rendu
+                    </th>
+                    <th style="text-align: center;">
+                        Medecin
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key,resultatTest in resultatTests %}
+                    {% if resultatTest.resultat != 0 %}
+                        <tr>
+                            <td align="center" >
+                                {{resultatTest.idJoueurTester.idMatch.idStade.idComplexe.nomComplexe}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idJoueurTester.idMatch.idStade.nomStade}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idJoueurTester.idMatch.idEvenement.nomEvenement}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idJoueurTester.idMatch.dateMatch | date('d/m/Y')}}
+                            </td>
+                            {% for key,joueur in joueurs %}
+                                {% if (resultatTest.idJoueurTester.joueurChoisi==joueur.id) %}
+                                    <td align="center" >
+                                        {{joueurs[key].nomJoueur}} {{joueurs[key].prenomJoueur}}
+                                    </td>
+                                    <td align="center" >
+                                        {{joueurs[key].idClub.nomClub}} 
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                            <td align="center" >
+                                {{resultatTest.resultat}}   
+                            </td>
+                            <td align="center" >                               
+                                {{resultatTest.description}} 
+                            </td>
+                            <td align="center" >                               
+                                {{resultatTest.idMedecin.nomUser}} 
+                            </td>
+                        </tr>
+                        
+                        <tr style="text-align: center; " >
+                            <td align="center" colspan=9>
+                                <a class="md-trigger btn btn-success btn-xs" aria-hidden="true" style="font-size: x-large;"
+                                   href="{{path('envoie_resultat_test',{'id':resultatTest.id})}}">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Envoyer le resultat par mail <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                    <br><br><br>
+                    <h1 align='center' style='color:red;'> Il y'a d'autres tests que vous avez demandé qui ne sont pas encore effectués </h1></font> 
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+{%endif %}
+<div class="navigation">
+    {{ knp_pagination_render(resultatTests) }}
+</div>
+<script>
+    function clignotement() {
+        if (document.getElementById("MonElement").style.display == "block")
+            document.getElementById("MonElement").style.display = "none";
+        else
+            document.getElementById("MonElement").style.display = "block";
+    }
+    setInterval("clignotement()", 500);
+</script> 
+{% endblock %}
+

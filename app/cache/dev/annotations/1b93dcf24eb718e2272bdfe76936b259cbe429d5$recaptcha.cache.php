@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:55:"EWZ\\Bundle\\RecaptchaBundle\\Validator\\Constraints\\IsTrue":2:{s:7:"message";s:34:"This value is not a valid captcha.";s:6:"groups";a:1:{i:0;s:7:"Default";}}}');

@@ -1,0 +1,57 @@
+{# empty Twig template #}
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+                <a class="btn btn-success btn-xs" href="{{path('ajouter_stade')}}">
+                    <i class="fa fa-plus"></i> Ajouter Un nouveau stade
+                </a>
+                <table class="table table-bordered" id="dev-table" >
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Nombre de place
+                            </th>
+                            
+                            <th>
+                                Supp
+                            </th>
+                            <th>
+                                MAJ
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stade in stades %}
+                        <tr>
+                            <td>
+                                {{stade.nomStade}}
+                            </td>
+                            <td>
+                                {{stade.capacite}}
+                            </td>
+                           
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_stade', {'id':stade.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_stade',{'id':stade.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                        
+
+        {% endblock %}
+
+
+        

@@ -1,0 +1,96 @@
+{% extends "FTTResponsableBundle::layoutResponsable.html.twig" %}
+{% block bodyAdmin %}
+    <center>
+        {% if app.user.quotaResponsable >0 %}
+            {% if matchs is empty %}
+                <br><br><br>
+                <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+                    <h1 align='center' style='color:red;'> Il n'y a aucun joueur a tester </h1></font> 
+                </div> 
+            {% else %}
+                <h1> Matchs :</h1>
+                {% for match in matchs %}
+                    {% if match.idJoueur3 == null %}
+                        <h3><i class="fa fa-hashtag" style="color: black"></i> Match à 2 joueurs:</h3>
+                        <table border="1" width="40%" >
+                            <tr>
+                                <td>
+                            <center>
+                                <h5> Date : {{match.dateMatch | date('d/m/Y')}}</h5>
+                                <h5> Evenement : {{match.idEvenement.nomEvenement}} </h5>
+                                <h5> Complexe : {{match.idStade.idComplexe.nomComplexe}} </h5>
+                                <h5> Stade : {{match.idStade.nomStade}} </h5>
+                                <h5> Arbitre : {{match.idArbitre.nomUser}} {{match.idArbitre.PrenomUser}}</h5>
+                            </center>
+                            </td>
+                            <td>
+                            <center>
+                                <form method="POST" action="{{path('hasard_test',{'id':match.id})}}">
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="1" required="required"> 1 joueur</label>
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="2" required="required"> 2 joueur</label>
+                                    <br>
+                                    <button class="btn btn-success" >Hasard !</button>
+                                </form>
+                            </center>
+                            </td>
+                            </tr>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                {% for match in matchs %}
+                    {% if match.idJoueur3 != null %}
+                        <h3><i class="fa fa-hashtag" style="color: black"></i> Match à 4 joueurs:</h3>
+                        <table border="1" width="40%" >
+                            <tr>
+                                <td>
+                            <center>
+                                <h5> Date : {{match.dateMatch | date('d/m/Y')}}</h5>
+                                <h5> Evenement : {{match.idEvenement.nomEvenement}} </h5>
+                                <h5> Type : {{match.typeMatch}} </h5>
+                                <h5> Complexe : {{match.idStade.idComplexe.nomComplexe}} </h5>
+                                <h5> Stade : {{match.idStade.nomStade}} </h5>
+                                <h5> Arbitre : {{match.idArbitre.nomUser}} {{match.idArbitre.PrenomUser}}</h5>
+                            </center>
+                            </td>
+                            <td>
+                            <center>
+                                <form method="POST" action="{{path('hasard_test',{'id':match.id})}}">
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="1" required="required"> 1 joueur</label>
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="2" required="required"> 2 joueur</label>
+                                    <br>
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="3" required="required"> 3 joueur</label>
+                                    <label><input type="radio" name="choix-joueur" id="choix-joueur" value="4" required="required"> 4 joueur</label>
+                                    <br>
+                                    <button class="btn btn-success" >Hasard !</button>
+                                </form>
+
+                            </center>
+                            </td>
+                            </tr>
+                        </table>                    
+                    {% endif %}
+                {% endfor %}
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(matchs) }}
+                </div>
+            {% endif %}
+        {% else %}
+            <br><br><br>
+            <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+                <h1 align='center' style='color:red;'> Vous n'avez pas droit de faire un autre test </h1></font> 
+            </div> 
+        {% endif %}
+
+    </center>
+    <script>
+        function clignotement() {
+            if (document.getElementById("MonElement").style.display == "block")
+                document.getElementById("MonElement").style.display = "none";
+            else
+                document.getElementById("MonElement").style.display = "block";
+        }
+        setInterval("clignotement()", 1000);
+    </script> 
+
+{% endblock %}

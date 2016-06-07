@@ -1,0 +1,57 @@
+ftt_responsable:
+    resource: "@FTTResponsableBundle/Resources/config/routing.yml"
+    prefix:   /responsable
+
+ftt_medecin:
+    resource: "@FTTMedecinBundle/Resources/config/routing.yml"
+    prefix:   /medecin
+
+ftt_arbitre:
+    resource: "@FTTArbitreBundle/Resources/config/routing.yml"
+    prefix:   /arbitre
+
+ftt_adherent:
+    resource: "@FTTAdherentBundle/Resources/config/routing.yml"
+    prefix:   /adherent
+
+ftt_utilisateur:
+    resource: "@FTTUtilisateurBundle/Resources/config/routing.yml"
+    prefix:   /ftt
+
+ftt_admin:
+    resource: "@FTTAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+fos_user:     
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml" 
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+ 
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+    
+google_login:
+    pattern: /login/check-google
+facebook_login:
+    pattern: /login/check-facebook
+
+dcs_rating:
+    resource: "@DCSRatingBundle/Resources/config/routing.xml"
+    prefix:   /
+
+fos_comment_api: 
+  type: rest 
+  resource: "@FOSCommentBundle/Resources/config/routing.yml" 
+  prefix: /api 
+  defaults: { _format: html }
+  
+#haenn
+contact:
+    path:     /{_locale}/contact
+    defaults: { _controller: AppBundle:Contact:index }
+    requirements:
+        _locale: en|fr|de
+

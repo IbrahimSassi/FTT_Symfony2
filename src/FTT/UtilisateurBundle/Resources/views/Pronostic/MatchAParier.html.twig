@@ -1,0 +1,227 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+{% block body %}
+
+    <style>
+        @-webkit-keyframes click-wave {
+            0% {
+                height: 40px;
+                width: 40px;
+                opacity: 0.35;
+                position: relative;
+            }
+            100% {
+                height: 200px;
+                width: 200px;
+                margin-left: -80px;
+                margin-top: -80px;
+                opacity: 0;
+            }
+        }
+        @-moz-keyframes click-wave {
+            0% {
+                height: 40px;
+                width: 40px;
+                opacity: 0.35;
+                position: relative;
+            }
+            100% {
+                height: 200px;
+                width: 200px;
+                margin-left: -80px;
+                margin-top: -80px;
+                opacity: 0;
+            }
+        }
+        @keyframes click-wave {
+            0% {
+                height: 40px;
+                width: 40px;
+                opacity: 0.35;
+                position: relative;
+            }
+            100% {
+                height: 200px;
+                width: 200px;
+                margin-left: -80px;
+                margin-top: -80px;
+                opacity: 0;
+            }
+        }
+        .option-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            position: relative;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            width: 20px;
+            -webkit-transition: all 0.15s ease-out 0s;
+            -moz-transition: all 0.15s ease-out 0s;
+            transition: all 0.15s ease-out 0s;
+            background: #cbd1d8;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 0.5rem;
+            outline: none;
+            position: relative;
+            z-index: 1000;
+        }
+        .option-input:hover {
+            background: #9faab7;
+        }
+        .option-input:checked {
+            background: #40e0d0;
+        }
+        .option-input:checked::before {
+            height: 10px;
+            width: 20px;
+            position: absolute;
+            content: '\2716';
+            display: inline-block;
+            font-size: 15.66667px;
+            text-align: center;
+        }
+        .option-input:checked::after {
+            -webkit-animation: click-wave 0.65s;
+            -moz-animation: click-wave 0.65s;
+            animation: click-wave 0.65s;
+            background: #40e0d0;
+            content: '';
+            display: block;
+            position: relative;
+            z-index: 100;
+        }
+        .option-input.radio {
+            border-radius: 50%;
+        }
+        .option-input.radio::after {
+            border-radius: 50%;
+        }
+
+    </style>
+
+
+    <form action="{{path('matchAparier')}}" method="POST">
+        <table class="table table-striped">
+
+            {% for match in matchsAparier %}
+
+                {% if match.idMatch.idJoueur3 == null and match.idMatch.idJoueur4 == null  %}
+
+                    {% if match.idMatch.idJoueur1.classementInternational > match.idMatch.idJoueur2.classementInternational %}
+                        {% set quotaJ1 = match.quota * 0.3 %}
+                        {% set quotaJ2 = match.quota * 0.7 %}
+                    {% else %}
+                        {% set quotaJ1 = match.quota * 0.7 %}
+                        {% set quotaJ2 = match.quota * 0.3 %}
+                    {% endif %}
+
+
+                    <tr >
+                        <td>
+                            {{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}}
+                        </td>
+                        <td>
+                            {{quotaJ1}}
+                        </td>
+                        <td>
+                            <input class="option-input radio" type="radio" name="{{loop.index-1}}" value="1" > - 
+                            <input class="option-input radio" type="radio" name="{{loop.index-1}}" value="2" > 
+                        </td>
+                        <td>
+                            {{quotaJ2}}
+                        </td>
+                        <td>
+                            {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}
+                        </td>
+                        <td>
+                            {{match.idMatch.dateMatch|date('d-m-Y')}}
+                        </td>
+                        <td>
+                            <input type="checkbox" class="option-input checkbox" name="joker" value="{{loop.index-1}}" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center" colspan="6">
+                            <a  style="width: 25%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur1.id})}}">Statistique <strong>{{match.idMatch.idJoueur1.nomJoueur}}</strong> </a> 
+                            <a  class="btn btn-flat3" href="{{path('rencontres_directes', {'idJoueur1':match.idMatch.idJoueur1.id,'idJoueur2':match.idMatch.idJoueur2.id})}}">Recontres directes</a> 
+                            <a  style="width: 25%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur2.id})}}">Statistique <strong>{{match.idMatch.idJoueur2.nomJoueur}}</strong> </a> 
+                        </td>
+                    </tr>
+
+                {% else %}
+
+
+                    {% if match.idMatch.idJoueur1.classementInternational + match.idMatch.idJoueur2.classementInternational  
+                > match.idMatch.idJoueur3.classementInternational + match.idMatch.idJoueur4.classementInternational %}
+                    {% set quotaJ1 = match.quota * 0.3 %}
+                    {% set quotaJ2 = match.quota * 0.7 %}
+                {% else %}
+                    {% set quotaJ1 = match.quota * 0.7 %}
+                    {% set quotaJ2 = match.quota * 0.3 %}
+                {% endif %}
+
+
+
+
+
+                <tr>
+                    <td>
+                        {{match.idMatch.idJoueur1.nomJoueur}} {{match.idMatch.idJoueur1.prenomJoueur}} & 
+                        {{match.idMatch.idJoueur2.nomJoueur}} {{match.idMatch.idJoueur2.prenomJoueur}}
+                    </td>
+                    <td>
+                        {{quotaJ1}}
+                    </td>
+                    <td>
+                        <input class="option-input radio" type="radio" name="{{loop.index-1}}" 
+                               value="1" > - 
+                        <input class="option-input radio" type="radio" name="{{loop.index-1}}" 
+                               value="2" > 
+                    </td>
+                    <td>
+                        {{quotaJ2}}
+                    </td>
+                    <td>
+                        {{match.idMatch.idJoueur3.nomJoueur}} {{match.idMatch.idJoueur3.prenomJoueur}} & 
+                        {{match.idMatch.idJoueur4.nomJoueur}} {{match.idMatch.idJoueur4.prenomJoueur}}
+                    </td>
+                    <td>
+                        {{match.idMatch.dateMatch|date('d-m-Y')}}
+                    </td>
+                    <td>
+                        <input type="checkbox" class="option-input checkbox" name="joker" value="{{loop.index-1}}" >
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center" colspan="6">
+                        <a  style="width: 22%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur1.id})}}">Statistique <strong>{{match.idMatch.idJoueur1.nomJoueur}}</strong> </a> 
+                        <a  style="width: 22%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur2.id})}}">Statistique <strong>{{match.idMatch.idJoueur2.nomJoueur}}</strong> </a> 
+                        <a  style="width: 22%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur3.id})}}">Statistique <strong>{{match.idMatch.idJoueur3.nomJoueur}}</strong> </a> 
+                        <a  style="width: 22%" class="btn btn-flat5" href="{{path('consulter_stat', {'id':match.idMatch.idJoueur4.id})}}">Statistique <strong>{{match.idMatch.idJoueur4.nomJoueur}}</strong> </a> 
+                    </td>
+                </tr>
+                {% endif %}
+                    {%endfor%}
+                    </table>
+
+                    {% if is_granted('ROLE_ADHERENT') %}
+                        <input style="margin-left: 60%;width: 30%" placeholder="Valeur Mise" 
+                               type="number" name="mise" id="mise" required min="0" max="100" value="0" class="form-control" 
+                               onchange="actionPronostic({{app.user.id}})" onkeyup="actionPronostic({{app.user.id}})"
+                               > <br>
+                        <div id='pronostic'></div>
+                    {% endif %}
+                </form>
+
+
+
+
+                {% endblock %}

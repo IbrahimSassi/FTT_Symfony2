@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+    <div style="font-size: 20px">FTT<span>Reinitialisation de mot de passe</span></div>
+</div>
+<div class="header1">
+    <a href="{{ path("ftt_utilisateur_homepage") }}">	<div>Fédération Tunisienne de<span>Tennis</span></div></a>
+</div>
+<div class="login">
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        <div>
+            {% if invalid_username is defined %}
+                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+            {% endif %}
+            <label style="color: white" for="username">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" id="username" name="username" required="required" />
+        </div>
+        <div>
+            <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+        </div>
+    </form>
+</div>

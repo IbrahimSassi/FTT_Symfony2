@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="dcs_rating.listener.rating_update_info.class">DCS\RatingBundle\EventListener\RatingUpdateInfoEventListener</parameter>
+        <parameter key="dcs_rating.listener.rating_update_rate.class">DCS\RatingBundle\EventListener\RatingUpdateRateEventListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="dcs_rating.listener.rating_update_info" class="%dcs_rating.listener.rating_update_info.class%">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="dcs_rating.listener.rating_update_rate" class="%dcs_rating.listener.rating_update_rate.class%">
+            <argument type="service" id="dcs_rating.manager.rating" />
+            <argument type="service" id="dcs_rating.manager.vote" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+
+</container>

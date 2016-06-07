@@ -1,0 +1,76 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+
+{% block bodyAdmin %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="profile-sidebar" style="width:250px;">
+
+                <div class="portlet light profile-sidebar-portlet">
+
+                    <div class="profile-userpic">
+                        <img src="data:image/png;base64,{{ images }}" class="img-responsive" alt="">
+                    </div>
+
+
+                    <div class="profile-userbuttons">
+
+                        <a class="btn btn-circle green-haze btn-sm" href="{{path('list_joueur')}}">Retour à la liste des joueurs</a>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="portlet light">
+
+                                <div class="portlet-body">
+
+
+                                    <form role="form" color="grey" action="#">
+                                        <div class="form-group">
+                                            <label class="control-label">Nom</label>
+                                            <input type="text" placeholder="{{joueur.nomJoueur}}" class="form-control" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Prénom</label>
+                                            <input type="text" placeholder="{{joueur.prenomJoueur}}" class="form-control" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Categorie du joueur</label>
+                                            <input type="text" placeholder="{{joueur.categorieJoueur}}" class="form-control" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Type du joueur</label>
+                                            <input type="text" placeholder="{{joueur.typeJoueur}}" class="form-control" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Club</label>
+                                            <input type="text" placeholder="{{joueur.idClub.nomClub}}" class="form-control" disabled/>
+                                        </div>
+
+
+
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    {% endblock %}

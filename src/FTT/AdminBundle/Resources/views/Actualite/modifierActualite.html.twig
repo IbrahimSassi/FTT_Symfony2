@@ -1,0 +1,41 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+{% block bodyAdmin %}
+    <h1>Modification d'un Article</h1> 
+    <div class="col-md-8" style="margin-left: 15%;margin-right: 2%;">
+        {# {{form(Form)}}#}
+        <div class="x_content">
+            <form method="POST" action="" {{ form_enctype(Form)}} onsubmit="new PNotify({
+                        title: 'Modification Effectué',
+                        text: 'Votre actualité a eté ajouté avec succes!',
+                        type: 'success'
+                    });"> 
+                <div class="form-group">
+                    {{form_label(Form.titreActualite)}}
+                    {{form_widget(Form.titreActualite)}}
+                </div>
+                <div class="form-group">
+                    {{form_label(Form.imageActualite)}}
+                    {{form_widget(Form.imageActualite)}}
+                </div>
+                <div class="form-group">
+                    {{form_label(Form.descriptionActualite)}}
+                    {{form_widget(Form.descriptionActualite)}}
+                </div>
+                <div class="ln_solid" style="margin-top: 2%"> </div>
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
+                        <input type="submit" value="Valider" class="btn btn-flat2 bg-blue-sky"
+                               onclick="new PNotify({
+                                           title: 'Modification Effectué',
+                                           text: 'votre actualité a eté modifié avec succes!',
+                                           type: 'success'
+                                       });">
+                        <a href="{{path('list_actualite')}}"  class="btn btn-danger">Retour</a>
+                    </div>
+                </div>
+            </form> 
+        </div>
+
+    {% endblock %}

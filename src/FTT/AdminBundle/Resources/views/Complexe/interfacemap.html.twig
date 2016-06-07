@@ -1,0 +1,49 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+{% block bodyAdmin %}
+    <html>
+        <head>
+
+            <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCw6Z2CFBlxvvksTqtg1dV9qI7PbUF3hYs"></script>
+            <script>
+                function initialize() {
+
+                    var lat = document.getElementById('lat').value;
+                    var long = document.getElementById('long').value;
+                    var myCenter = new google.maps.LatLng(lat, long);
+                    var mapProp = {
+                        center: new google.maps.LatLng(lat, long),
+                        zoom: 5,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                    var marker = new google.maps.Marker({
+                        position: myCenter,
+                        animation: google.maps.Animation.BOUNCE
+                    });
+                    marker.setMap(map);
+                    var infowindow = new google.maps.InfoWindow({
+                        content: "c'est le complexe"
+                    });
+
+                    infowindow.open(map, marker);
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        map.setZoom(15);
+                        map.setCenter(marker.getPosition());
+                    });
+
+                }
+                google.maps.event.addDomListener(window, 'load', initialize);
+
+            </script>
+        </head>
+
+        <body>
+            {% block container %}
+
+            {% endblock %}
+        </body>
+
+    </html>
+{% endblock %}

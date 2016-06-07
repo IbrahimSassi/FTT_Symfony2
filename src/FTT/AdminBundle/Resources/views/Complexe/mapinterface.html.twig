@@ -1,0 +1,8 @@
+{# empty Twig template #}
+{% extends "FTTAdminBundle:Complexe:interfacemap.html.twig" %}
+
+{% block container %}
+    <input id="lat" type="hidden" value="{{latitude}}"/>
+    <input id="long" type="hidden" value="{{longitude}}"/>
+<div id="googleMap" style="width:900px;height:700px;"></div>
+{% endblock %}

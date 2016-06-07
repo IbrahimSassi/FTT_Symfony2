@@ -1,0 +1,45 @@
+{% extends "FTTArbitreBundle::layoutArbitre.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+         
+            <h1>Liste des matchs </h1>       
+             <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Type de Match
+                            </th>
+                            <th>
+                                Date de Match
+                            </th>
+                          
+                            <th>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <body>       
+    {% for match in matchs %}
+       
+        <tr>
+                            <td>
+                                {{match.typeMatch}}
+                            </td>
+                            <td>
+                                 {{match.dateMatch|date('d-m-Y')}}
+                            </td>
+                           
+              <td>
+           <a class="btn btn-info btn-xs" href="{{path('modifier_CompteRendu',{'id':match.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>                
+              </td>
+               </tr>
+    {% endfor %}
+    
+ </body>
+</table>
+{% endblock %}
+

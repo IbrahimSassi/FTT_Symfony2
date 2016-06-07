@@ -1,0 +1,63 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+
+{% block header1 %}
+    {{ include('FTTAdminBundle::Default/Includes/header.html.twig') }}
+{% endblock %}
+
+{% block bodyAdmin %}
+    <a class="btn btn-success btn-xs" href="{{path('ajouter_actualite')}}">
+        <i class="fa fa-plus"></i> Ajouter Un nouveau article
+    </a>
+    <table class="table table-bordered" id="dev-table" >
+        <thead>
+            <tr>
+                <th>
+                    Titre
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actualite in actualites %}
+                <tr>
+                    <td>
+                        {{actualite.titreActualite}}
+                    </td>
+                    <td>
+                        {{actualite.descriptionActualite}}
+                    </td>
+                    <td>
+                        {{actualite.dateActualite|date("d/m/Y")}}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" href="{{path('supprimer_actualite', {'id':actualite.id})}}"
+                           onclick="new PNotify({
+                                       title: 'Suppression Effectué',
+                                       text: 'Votre actualité a eté supprimé avec succes!',
+                                       type: 'error'
+                                   });">
+                            <i class="fa fa-trash-o"></i> Supprimer</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{path('modifier_actualite',{'id':actualite.id})}}">
+                            <i class="fa fa-pencil"></i> Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(actualites) }}
+        </div>
+    </tbody>
+</table>
+
+
+{% endblock %}
+
+

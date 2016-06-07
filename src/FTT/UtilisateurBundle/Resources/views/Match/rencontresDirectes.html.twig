@@ -1,0 +1,96 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+
+{% block body %}
+    <div class="col-md-12">
+        <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+            <tr>
+                <td style="border-bottom: #88C425 solid 2px;">
+                    <span>HEAD2HEAD</span></br>
+                </td>
+            </tr>
+        </table>
+
+        <table class="table-responsive table-striped " style="width: 100%;font-family: 'Exo';font-size: medium;margin-bottom: 5%">
+            <form method="POST" action="">
+                <tr>
+                    <td style="border-bottom: #F47920 solid 2px;">
+                        {{form_widget(form.idJoueur1)}}
+                    </td>
+                    <td style="border-bottom: #472B93 solid 2px;">
+                        {{form_widget(form.idJoueur2)}}
+                    </td>
+                    <td style="border-bottom: #00B6F1 solid 2px;;font-family: 'Oswald', sans-serif;">
+                        <input type="submit" value="Recherche" class="btn btn-flat" style="width: 100%">
+                    </td>
+                </tr>
+            </form>
+        </table>
+
+        <table class="table-responsive table-striped" style="width: 100%;font-family: 'Exo';font-size: medium;">
+            <tr style="width: 100%">
+                <td colspan="2" >
+                    <img  style="width: 100px; height: 150px;" alt="Embedded Image" src="data:image/png;base64,{{imageJoueur1}}" >
+                </td>
+                <td colspan="2" style="text-align: center">
+                    <img src="{{asset('img/vs.jpg')}}" alt="Img" width="35px" height="35px">
+                </td>
+                <td colspan="3" style="text-align: right">
+                    <img  style="width: 100px; height: 150px;" alt="Embedded Image" src="data:image/png;base64,{{imageJoueur2}}" >
+                </td>
+            </tr>
+            <tr style="height: 30px">
+
+            </tr>
+            <tr style="text-align: center;font: bold">
+                <td style="font-size: x-large;color: #88C425">       {{joueur1.nomJoueur}} {{joueur1.prenomJoueur}} </td>
+                <td> {{NbVictoiresJoueur1}}  </td>
+                <td colspan="2" style="background-color: #F1F1F1;color: black"> Nombre Victoires </td>
+                <td> {{NbVictoiresJoueur2}} </td>
+                <td style="font-size: x-large;color: #88C425"> {{joueur2.nomJoueur}} {{joueur2.prenomJoueur}} </td>
+
+            </tr>
+            <tr style="height: 30px">
+
+            </tr>
+            <tr style="color: #2ecc71">
+                <td colspan="6" style="text-align: center;font-size: large;font-family: sans-serif"> Rencontres directes </td>
+            </tr>
+            <tr style="color: #2ecc71;">
+                <td style="text-align: center"> Date </td>
+                <td style="text-align: center"> Evenement </td>
+                <td style="text-align: center"> Joueur 1 </td>
+                <td style="text-align: center"> Resultat </td>
+                <td style="text-align: center"> Joueur 2 </td>
+                <td style="text-align: center"> Stade </td>
+            </tr>
+            <tr style="height: 20px">
+
+            </tr>
+            {% for match in matchs %}
+                <tr >
+                    <td style="text-align: center;" class="tdBorder">
+                        {{match.idMatch.dateMatch | date('d - m - Y')}}
+                    </td>
+                    <td style="text-align: center;" class="tdBorder">
+                        {{match.idMatch.idEvenement.nomEvenement}}
+                    </td>
+                    <td style="text-align: left" class="tdBorder">
+                        {{match.idMatch.idJoueur1.prenomJoueur}} {{match.idMatch.idJoueur1.nomJoueur}}
+                    </td>
+                    <td style="background-color: #F1F1F1;color: black;text-align: center" class="tdBorder">
+                        {{match.rsltJoueur1}} -  {{match.rsltJoueur2}}
+                    </td>
+                    <td style="text-align: right" class="tdBorder">
+                        {{match.idMatch.idJoueur2.prenomJoueur}} {{match.idMatch.idJoueur2.nomJoueur}}  
+                    </td>
+                    <td style="text-align: center" class="tdBorder">
+                        {{match.idMatch.idStade.nomStade}} 
+                    </td>
+                </tr> 
+                <tr style="height: 20px">
+
+                </tr>
+            {% endfor %}              
+        </table>
+    </div>
+{% endblock %}

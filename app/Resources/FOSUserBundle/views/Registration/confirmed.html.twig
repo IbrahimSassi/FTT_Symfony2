@@ -1,0 +1,24 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div >FTT<span>Confirmation</span></div>
+    </div>
+    <div class="header1">
+        <a href="{{ path("ftt_utilisateur_homepage") }}">	
+            <div>Fédération Tunisienne de<span>Tennis</span></div></a>
+    </div>
+    <div class="login" style="margin-left: 1%;width: 250px">
+
+        <div style="color: white" >
+            <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                {% endif %}
+        </div>
+    </div>
+{% endblock fos_user_content %}

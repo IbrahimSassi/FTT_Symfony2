@@ -1,0 +1,11 @@
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
+        
+    redirect.after.login:
+        class: FTT\UtilisateurBundle\Redirection\AfterLoginRedirection
+        arguments: [@router]
+
+    redirect.after.logout:
+        class: FTT\UtilisateurBundle\Redirection\AfterLogoutRedirection
+        arguments: [@router, @security.context]

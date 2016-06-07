@@ -1,0 +1,63 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+               <a class="btn btn-success btn-xs" href="{{path('attribuer_dons_club')}}">
+                    <i class="fa fa-plus"></i> attribuer don a un club
+                </a>
+                 <a class="" style="margin-left: 750px;"href="{{path('list_dons')}}">
+                        <i class="fa fa-tag" ></i> Liste des dons 
+                </a>
+                <table class="table table-bordered" id="dev-table" >
+                    <thead>
+                        <tr>
+                           
+                            <th>
+                                 club
+                            </th>
+                            <th>
+                              <a  href="{{path('list_dons')}}">Type du don </a><i class="fa fa-tag" class="btn btn-info btn-xs" ></i> 
+                            </th>
+                             <th>
+                                Date d'affectation
+                            </th>
+                            <th>
+                                Annuler
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donsClubs in donsClubss %}
+                        <tr>
+                            
+                            <td>
+                                  {{donsClubs.idClub.nomClub}}
+                                    
+                            </td>
+                           
+                               <td>   
+                        <u>  <a  href="{{path('list_dons', {'id':donsClubs.id})}}">   
+                            {{donsClubs.idDon.typeDon}}</u>  </a> </td> 
+
+                                 <td>
+                                {{donsClubs.dateAffection|date("d/m/Y")}}
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('Annuler_donsclubs', {'id':donsClubs.id})}}">
+                                    <i class="fa fa-trash-o"></i> Annuler</a>
+                            </td>
+                          
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                        
+
+        {% endblock %}
+
+
+        

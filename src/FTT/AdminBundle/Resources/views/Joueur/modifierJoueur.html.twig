@@ -1,0 +1,10 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+{% block bodyAdmin %}
+    <h1>Modifier un joueur</h1> 
+    <form action="" method="POST" {{ form_enctype(Form) }} >
+        {{ form_widget(Form) }}
+        <input type="submit" value="Valider" class="btn btn-info">
+    </form>
+
+{% endblock %}

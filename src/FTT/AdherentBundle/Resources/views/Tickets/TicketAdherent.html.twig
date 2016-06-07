@@ -1,0 +1,152 @@
+{% extends "FTTAdherentBundle::layoutAdherent.html.twig" %}
+
+{% block body %}
+
+    {% if ticket is empty %}
+        <br><br><br>
+
+        <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+            <h1 align='center' style='color:red;'> Vous n'avez aucun ticket en stock </h1></font> 
+        </div> 
+    {% else %}
+        <marquee id="id1">
+            <span onmouseover="getElementById('id1').stop();" onmouseout="getElementById('id1').start();">
+                <h3><i class="fa fa-hashtag" style="color: green"> Vos tickets&nbsp</i><i class="fa fa-hashtag" style="color: green"></i></h3>
+            </span>
+        </marquee>
+        {% for tickets in ticket %}
+            <div style="background-color: #D8D8D8; border: #000 solid thin;width: 600px" class="md-modal md-effect-8" id="modal-{{tickets.id}}-qr">
+                <div style="padding-left: 0%" class="md-content">
+                    <h3><i class="fa fa-info-circle" style="color: black"></i> QR Code :</h3>
+                    <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" >
+                        <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+                        </div>
+                        <div class="col-md-8 col-xs-8 col-lg-8 col-sm-8">
+                            <center>
+                                {% set msg = 'Le numéro de votre chaise est: ' ~ tickets.id ~ ' Les portes sreont fermé avant 45min du lancement du match. Bon Match' %}
+                                <img src="{{ qrcode_data_uri(msg) }}" />
+                            </center>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg md-close" >Close me!</button>
+                </div>
+            </div>
+            {% if tickets.etat == -1 %}
+                <div style="background-color: #D8D8D8; border: #000 solid thin;width: 80px" class="md-modal md-effect-8" id="modal-{{tickets.id}}-ticket">
+                    <div style="padding-left: 0%" class="md-content">
+                        <center>
+                            <br>
+                            <h1>
+                                Prix du Ticket : {{tickets.idTicket.prixTicket}}DT
+                                <br>
+                            </h1>
+                            <form action="{{path('acheter_ticket',{'id':tickets.id})}}">
+                                <font id='achatTicket-{{tickets.id}}'></font>
+                            </form>
+                            <br>
+                            <br>
+                            <br>
+                        </center>
+                        <button class="btn btn-primary btn-xs md-close" >Close me!</button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <table class="table table-striped table-hover" style="font-family: 'Exo';text" >
+            <thead>
+            <th style="text-align: center;">
+                Complexe
+            </th>
+            <th style="text-align: center;">
+                Stade
+            </th>
+            <th style="text-align: center;">
+                Evenement
+            </th>
+            <th style="text-align: center;">
+                DateMatch
+            </th>
+            <th style="text-align: center;">
+                Joueur 1
+            </th>
+            <th style="text-align: center;">
+                Joueur 2
+            </th>
+            <th style="text-align: center;">
+                Joueur3
+            </th>
+            <th style="text-align: center;">
+                Joueur4
+
+                </thead>
+            <tbody>
+                {% for tickets in ticket %}
+                    <tr>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.idStade.idComplexe.nomComplexe}}
+                        </td>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.idStade.nomStade}}
+                        </td>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.idEvenement.nomEvenement}}
+                        </td>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.dateMatch | date('d/m/Y')}}
+                        </td>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.idJoueur1.nomJoueur}} {{tickets.idTicket.idMatch.idJoueur1.prenomJoueur}}
+                        </td>
+                        <td align="center" >
+                            {{tickets.idTicket.idMatch.idJoueur2.nomJoueur}} {{tickets.idTicket.idMatch.idJoueur2.prenomJoueur}}
+                        </td>
+                        <td align="center" >
+                            {% if tickets.idTicket.idMatch.idJoueur3 == null %}
+                                ~<br>~
+                            {% else %}
+                                {{tickets.idTicket.idMatch.idJoueur3.nomJoueur}} {{tickets.idTicket.idMatch.idJoueur3.prenomJoueur}}
+                            {% endif %}
+                        </td>
+                        <td align="center" >
+                            {% if tickets.idTicket.idMatch.idJoueur4 == null %}
+                                ~<br>~
+                            {% else %}
+                                {{tickets.idTicket.idMatch.idJoueur4.nomJoueur}} {{tickets.idTicket.idMatch.idJoueur4.prenomJoueur}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr style="text-align: center; " >
+                        {% if tickets.etat == -1 %}
+                            <td align="center" COLSPAN=8>
+                                <a class="md-trigger  btn btn-flat3 btn-xs" style="font-size: x-large;" data-modal="modal-{{tickets.id}}-qr">
+                                    <i  class="fa fa-qrcode" aria-hidden="true"></i>
+                                    QR Code </a>  
+                                <a class="md-trigger  btn btn-flat3 btn-xs" style="font-size: x-large;" onclick="actionAchatTicket({{app.user.id}},{{tickets.idTicket.prixTicket}} ,{{tickets.id}} )"
+                                   style="font-size: x-large;" data-modal="modal-{{tickets.id}}-ticket"><i class="fa fa-shopping-cart" ></i>
+                                    Payer maintenant </a> 
+                                <a class="btn btn-flat6 btn-xs" aria-hidden="true" href="{{path('envoie_ticket',{'id':tickets.id})}}" style="font-size: x-large; width: 38%">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"  ></i> Réenvoyer le ticket </a>
+                                <a class="btn btn-flat5 btn-xs" style="font-size: x-large;" href="{{path('supprimer_ticket', {'id':tickets.id})}}">
+                                    <i class="fa fa-trash-o"></i> Annuler</a>
+                            </td>
+                        {% else %}
+                            <td align="center" colspan=8>
+                                <a class="md-trigger  btn btn-flat3 btn-xs" style="font-size: x-large;" data-modal="modal-{{tickets.id}}-qr">
+                                    <i  class="fa fa-qrcode" aria-hidden="true"></i>
+                                    QR Code </a>  
+                                <a class="btn btn-flat3 btn-xs" aria-hidden="true" href="{{path('envoie_ticket',{'id':tickets.id})}}" style="font-size: x-large; width: 38%;">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"  ></i> Réenvoyer la facture</a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {%endif %}
+    <div class="navigation">
+        {{ knp_pagination_render(ticket) }}
+    </div>
+
+{% endblock %}

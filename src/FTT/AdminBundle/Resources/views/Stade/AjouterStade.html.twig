@@ -1,0 +1,23 @@
+{# empty Twig template #}
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+{% block bodyAdmin %}
+     <h1>Ajout d'un stade</h1> 
+    <div class="col-md-8" style="margin-left: 15%;margin-right: 2%;">
+        <form method="POST" action="" onsubmit="new PNotify({
+                                title: 'Ajout Effectué',
+                                text: 'Votre stade a eté ajouté avec succes!',
+                                type: 'success'
+                            });" > 
+     {{form_widget(Form)}}
+            <div class="ln_solid" style="margin-top: 2%"> </div>
+            <div class="form-group">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%" >
+                    <input style="margin-left: 90%" type="submit" value="Valider" class="btn btn-flat2 bg-blue-sky"
+                           />
+                    </div>
+            </div>
+        </form>
+    </div>
+                 
+{% endblock %}

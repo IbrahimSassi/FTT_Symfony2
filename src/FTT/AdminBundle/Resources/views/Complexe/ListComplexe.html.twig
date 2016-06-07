@@ -1,0 +1,68 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+                <a class="btn btn-success btn-xs" href="{{path('ajouter_complexe')}}">
+                    <i class="fa fa-plus"></i> Ajouter Un nouveau complexe
+                </a>
+                <table class="table table-bordered" id="dev-table" >
+                    <thead>
+                        <tr>
+                            
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Place
+                            </th>
+                            <th>
+                                Nombre de stade
+                            </th>
+                            <th>
+                                Supp
+                            </th>
+                            <th>
+                                MAJ
+                            </th>
+                            <th>
+                                lieux
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for complexe in complexes %}
+                        <tr>
+                            <td>
+                                {{complexe.nomComplexe}}
+                            </td>
+                            <td>
+                                {{complexe.place}}
+                            </td>
+                            <td>
+                                {{complexe.nbStade}}
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_complexe', {'id':complexe.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_complexe',{'id':complexe.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                             <td>
+                                <a class="btn btn-info btn-xs" href="{{path('interface_map', {'id':complexe.id})}}">
+                                    <i class="fa fa-plus"></i> consulter lieu</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                        
+
+        {% endblock %}
+
+
+        

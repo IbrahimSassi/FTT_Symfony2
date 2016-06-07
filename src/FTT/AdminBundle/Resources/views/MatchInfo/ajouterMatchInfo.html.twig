@@ -1,0 +1,58 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+{% block bodyAdmin %}
+
+
+
+
+    <h1>Ajout d'un Match</h1> 
+    <div class="col-md-8" style="margin-left: 15%;margin-right: 2%;">
+        <form method="POST" action="" onsubmit="new PNotify({
+                    title: 'Ajout Effectué',
+                    text: 'Votre match a eté ajouté avec succes!',
+                    type: 'success'
+                });" > 
+            {{form_widget(Form)}}
+            <div class="ln_solid" style="margin-top: 2%"> </div>
+            <div class="form-group">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%" >
+                    <input type="submit" value="Valider" class="btn btn-flat2 bg-blue-sky"
+                           />
+                    <a href="{{path('list_matchsInfo')}}"  class="btn btn-danger">Retour</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% set popup = msg %}    
+    {% if popup == 'memeJoueur' %}
+        <script type="text/javascript">
+            alert("Vous ne pouvez pas choisir le meme joueur");
+        </script>
+    {% elseif popup == 'errorarbitre' %}
+        <script type="text/javascript">
+            alert("L'arbitre que vous avez choisi ne peut pas arbitrer ce type des matchs");
+        </script>
+    {% elseif popup == 'errorEvenement' %}
+        <script type="text/javascript">
+            alert("L'evenement que vous avez choisi n'est pas adequat avec le type du match ");
+        </script>
+    {% elseif popup == 'errorDisponibilite' %}
+        <script type="text/javascript">
+            alert("L'arbitre que vous avez choisi n'est pas disponible ce jour la ");
+        </script>
+    {% elseif popup == 'errorDisponibiliteStade' %}
+        <script type="text/javascript">
+            alert("Le stade que vous avez choisi n'est pas disponible ce jour la ");
+        </script>
+    {% elseif popup == 'errorDisponibiliteJoueur1' %}
+        <script type="text/javascript">
+            alert("Le joueur numero 1 que vous avez choisi n'est pas disponible ce jour la ");
+        </script>
+    {% elseif popup == 'errorDisponibiliteJoueur2' %}
+        <script type="text/javascript">
+            alert("Le joueur numero 2 que vous avez choisi n'est pas disponible ce jour la ");
+        </script>
+
+    {% endif %}
+{% endblock %}

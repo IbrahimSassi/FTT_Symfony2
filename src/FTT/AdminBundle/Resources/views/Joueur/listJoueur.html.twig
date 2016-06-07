@@ -1,0 +1,81 @@
+  
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+               <a class="btn btn-success btn-xs" href="{{path('ajouter_joueur')}}">
+                    <i class="fa fa-plus"></i> Ajouter un nouveau joueur
+                </a>
+                <table class="table table-bordered" id="dev-table" >
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Prenom
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                             <th>
+                                Categorie
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                             <th>
+                                Club
+                            </th>
+                            <th>
+                                Supp
+                            </th>
+                            <th>
+                                MAJ
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for key,joueur in joueurs %}
+                        <tr>
+                            <td>
+                                {{joueur.id}}
+                            </td>
+                            <td>
+                                {{joueur.nomJoueur}}
+                            </td>
+                          
+                            <td>
+                                {{joueur.prenomJoueur}}
+                            </td>
+                            <td>
+                                <img class="img-responsive" src="data:image/png;base64,{{ imagesJoueurs[key] }}" alt="" height="120px" width="50px" />  </td>
+                            <td>
+                                {{joueur.categorieJoueur}}
+                            </td>
+                             <td>
+                                {{joueur.typeJoueur}}
+                            </td>
+                             <td>
+                                {{joueur.idClub.nomClub}}
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_joueur', {'id':joueur.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_joueur',{'id':joueur.id,'idClub':joueur.idClub.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            
+               {% endblock %}

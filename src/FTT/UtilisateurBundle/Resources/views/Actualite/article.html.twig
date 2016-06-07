@@ -1,0 +1,91 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+{% block body %}
+
+
+
+        <!-- Single Post -->
+        <div class="panel-box">
+
+            <!-- Title Post -->
+            <div class="titles">
+                <h4>{{article.titreActualite}}</h4>
+            </div>
+            <!-- Title Post -->
+
+            <!-- Post Item -->
+            <div class="post-item single-news">
+                <div class="row">
+                    <!-- Image Post -->
+                    <div class="col-md-12">
+                        <p class="data-info">{{article.dateActualite | date('Y-m-d')}}  / <i class="fa fa-comments"></i><a href="#"></a></p>
+                        <img alt="Embedded Image" src="data:image/png;base64,{{ images }}" width="730px" height="400px"> 
+
+                    </div>
+                    <!-- Image Post -->
+
+                    <!-- Info Post -->
+                    <div class="col-md-12 padding-top-mini">
+                        <p>
+                            {{article.descriptionActualite}} 
+                        </p>
+
+                    </div>
+                    <!-- End Info Post -->
+                </div>
+
+                <div class="col-xs-12 bottom text-center">
+                    {{ socialButtons({'facebook':true}) }}
+                    {{ socialButtons({'twitter':true}) }}
+                </div>
+            </div>
+                
+               
+                
+                
+    <link href="{{asset('css/stylecommentaire.css')}}" rel="stylesheet" media="screen">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+
+    <br/>
+    <!-- Comments --> 
+    <div class="panel-box">
+        <!-- Title Post -->
+        <div class="titles">
+
+        </div>
+        <!-- Title Post -->
+
+        <ul  class="testimonials">
+
+            <li>
+                <blockquote>
+                    {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': article.id} %}
+                </blockquote>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <!-- Comment Form --> 
+    <div class="panel-box">
+
+        <!-- End Comment Form --> 
+    </div>
+
+    <!-- End Comments -->  
+
+                
+                
+                
+                
+                
+                
+            <!-- End Post Item -->
+        </div>  
+        <!-- End Single Post --> 
+
+
+    {% endblock %}
+

@@ -1,0 +1,70 @@
+{% extends "FTTResponsableBundle::layoutResponsable.html.twig" %}
+{% block bodyAdmin %}   
+
+    {% if resultatTests is empty %}
+        <br><br><br>
+
+         
+        <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+            <h1 align='center' style='color:red;'> Vous n'aves aucun test en attente </h1></font> 
+        </div> 
+    {% else %}
+        <br><br><br>
+
+        <marquee id="id1">
+            <span onmouseover="getElementById('id1').stop();" onmouseout="getElementById('id1').start();">
+                <h3><i class="fa fa-hashtag" style="color: green"> Les Test en attentes que vous avez commandé&nbsp</i><i class="fa fa-hashtag" style="color: green"></i></h3>
+            </span>
+        </marquee>
+        
+
+        <table class="table table-striped table-hover" style="font-family: 'Exo';text" >
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        Complexe
+                    </th>
+                    <th style="text-align: center;">
+                        Stade
+                    </th>
+                    <th style="text-align: center;">
+                        Evenement
+                    </th>
+                    <th style="text-align: center;">
+                        DateMatch
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultatTest in resultatTests %}
+                        <tr>
+                            <td align="center" >
+                                {{resultatTest.idMatch.idStade.idComplexe.nomComplexe}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idMatch.idStade.nomStade}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idMatch.idEvenement.nomEvenement}}
+                            </td>
+                            <td align="center" >
+                                {{resultatTest.idMatch.dateMatch | date('d/m/Y')}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+        </tbody>
+    </table>
+
+{%endif %}
+
+<script>
+    function clignotement() {
+        if (document.getElementById("MonElement").style.display == "block")
+            document.getElementById("MonElement").style.display = "none";
+        else
+            document.getElementById("MonElement").style.display = "block";
+    }
+    setInterval("clignotement()", 500);
+</script> 
+{% endblock %}
+

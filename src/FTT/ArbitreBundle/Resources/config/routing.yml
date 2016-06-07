@@ -1,0 +1,55 @@
+ftt_arbitre_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: FTTArbitreBundle:Default:index }
+ 
+#ons session 
+list_session:
+    path: /ListSession
+    defaults: { _controller: FTTArbitreBundle:SessionArbitre:listsessions }
+modifier_session:
+    path: /modifSession/{id}
+    defaults: { _controller:  FTTArbitreBundle:SessionArbitre:modifierSessions }
+
+#PlanningArbitre hanen
+list_planning:
+    path: /ListPlanning
+    defaults: { _controller: FTTArbitreBundle:Planning:list }
+    
+ajouter_planning:
+    path: /ajouterPlanning/{id}
+    defaults: { _controller: FTTArbitreBundle:Planning:ajouter }
+    
+supprimer_planning:
+    path: /supprimerPlanning/{id}
+    defaults: { _controller: FTTArbitreBundle:Planning:supprimer }
+    
+modifier_planning:
+    path: /modifierPlanning/{id}
+    defaults: { _controller: FTTArbitreBundle:Planning:modifier }
+    
+ #CompteRendu  hanen
+list_ResultatMatch:
+    path: /ListCompteRendu/{id}
+    defaults: { _controller: FTTArbitreBundle:ResultatMatch:list } 
+    
+modifier_CompteRendu:
+    path: /modifierCompte_rendu/{id}
+    defaults: { _controller: FTTArbitreBundle:ResultatMatch:modifier }
+    
+ 
+modifier_ResultatMatch:
+    path: /modifierResultatMatch/{id}
+    defaults: { _controller: FTTArbitreBundle:ResultatMatch:modifier }  
+ 
+    #Profile 
+consulter_profil_arbitre:
+    path: /profilArbitre
+    defaults: { _controller: FTTArbitreBundle:Profil:Profil}
+
+modifier_profil_arbitre:
+    path: /modifierProfilArbitre
+    defaults: { _controller: FTTArbitreBundle:Profil:EditProfil}
+    
+update_profil_arbitre:
+    path: /updateProfilArbitre
+    defaults: { _controller: FTTArbitreBundle:Profil:UpdateProfil}

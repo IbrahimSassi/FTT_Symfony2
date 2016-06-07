@@ -1,0 +1,46 @@
+ftt_medecin_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: FTTMedecinBundle:Default:index }
+# Choisir Test
+choisir_test:
+    path:     /ListerTest
+    defaults: { _controller: FTTMedecinBundle:ChoisirTest:list }
+    
+enregister_test:
+    path:     /EnregisterTest/{id}
+    defaults: { _controller: FTTMedecinBundle:ChoisirTest:Enregister }
+
+mes_tests:
+    path:     /MesTests
+    defaults: { _controller: FTTMedecinBundle:ChoisirTest:MesTests }
+
+# Compte Rendu
+publier_compte_rendu:
+    path:     /PublierCompteRendu
+    defaults: { _controller: FTTMedecinBundle:ResultatTest:PublierTests }
+
+ajout_compte_rendu:
+    path:     /AjouterCompteRendu/{id}
+    defaults: { _controller: FTTMedecinBundle:ResultatTest:AjouterTest }
+
+modifier_compte_rendu:
+    path: /MesComptesRendus
+    defaults: { _controller: FTTMedecinBundle:ResultatTest:MesComptesRendus }
+    
+modifierCompte_rendu:
+    path: /ModifierCompteRendu/{id}
+    defaults: { _controller: FTTMedecinBundle:ResultatTest:modifierCompteRendu}
+    
+    
+#profil medecin   
+consulter_profil_medecin:
+    path: /profilMedecin
+    defaults: { _controller: FTTMedecinBundle:Profil:Profil}
+
+modifier_profil_medecin:
+    path: /modifierProfilMedecin
+    defaults: { _controller: FTTMedecinBundle:Profil:EditProfil}
+    
+update_profil_medecin:
+    path: /updateProfilMedecin
+    defaults: { _controller: FTTMedecinBundle:Profil:UpdateProfil}

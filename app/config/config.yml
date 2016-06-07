@@ -1,0 +1,186 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:       ~
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ "FOSCommentBundle" ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: smtp
+    host:      smtp.gmail.com
+    port:   465
+    username:  tft.codexit@gmail.com
+    password:  Codexit123
+    spool:     { type: memory }
+    encryption: ssl
+    auth_mode:  login
+    disable_delivery:   false
+    
+    
+    
+#paypalConfiguration
+
+    
+
+#configuration knpPaginator
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+#Configuration NomayaSOcial Buttons 
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            "www.facebook.com/FederationTunisienneDeTennis"
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager"
+            text:           "tweet"
+            via:            "FTT test"
+            tag:            "FTT"
+            
+# FOSUserBundle Configuration
+fos_user:
+    db_driver: orm 
+    firewall_name: main
+    user_class: FTT\AdminBundle\Entity\User
+
+#HWIOAuthBundle
+hwi_oauth:
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+    connect:
+        account_connector: ib_user.oauth_user_provider
+    http_client:
+         verify_peer: false
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           "892006427574780"
+            client_secret:       "290fa4fe0ab46f43cd38c7b5ffa01f01"
+            scope:               "email, public_profile"
+            infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
+            paths:
+                email: email
+            options:
+                display: page
+        google:
+            type:                google
+            client_id:           "348843281092-fvtil9apo34rracpe3k74fgvjjkin764.apps.googleusercontent.com"
+            client_secret:       "wjODuhr-N0OFAES6mLKhiMSX"
+            scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            paths:
+                email: email
+
+        linkedin:
+            type:                linkedin
+            client_id:           "7840e33btt7noc"
+            client_secret:       "2oPbkHqztg1xl1r7"
+            scope:              "email"
+            paths:
+                email: email
+                
+                #Rating Bundle Config
+dcs_rating:
+    db_driver: orm
+    base_path_to_redirect: / # when the permalink is not configured
+    max_value: 5 # maximum value for the vote (stars displayed)
+    model:
+        rating: FTT\AdminBundle\Entity\Rating
+        vote: FTT\AdminBundle\Entity\Vote
+
+ewz_recaptcha:
+    public_key:  6Lc2lR0TAAAAAHARsOqR1EAl-YdUVI-ptL28G3sZ
+    private_key: 6Lc2lR0TAAAAAI1xK3Fisw1MIXP9DEYaO2-KIaRk
+    locale_key:  %kernel.default_locale%
+    
+    
+    #ONS
+fos_comment:
+  db_driver: orm
+  class: 
+    model:
+        comment: FTT\AdminBundle\Entity\Comment
+        thread: FTT\AdminBundle\Entity\Thread
+        vote: FTT\AdminBundle\Entity\Votes
+
+
+#paypal configuration    
+beelab_paypal:
+    return_route: succes_recharge
+    cancel_route: echec_recharge
+    test_mode:    "%kernel.debug%"

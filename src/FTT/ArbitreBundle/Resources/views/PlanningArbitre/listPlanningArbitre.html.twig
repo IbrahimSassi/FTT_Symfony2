@@ -1,0 +1,56 @@
+{% extends "FTTArbitreBundle::layoutArbitre.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+
+
+                <a class="btn btn-success btn-xs" href="{#{path('ajouterPlanning')}#}">
+                    <i class="fa fa-plus"></i> Ajouter Un nouveau Planning
+                </a>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Arbitre 
+                            </th>
+                            <th>
+                                Date Disponibilite
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for planning in plannings %}
+                        <tr>
+                            <td>
+                                {{planning.idArbitre.nomUser}}
+                            </td>
+                            <td>
+                                 {{planning.dateDispo|date('d-m-Y')}}
+                            </td>
+                            <td>
+                                {{planning.description}}
+                            </td>
+                            
+                           
+                           
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{path('supprimer_planning', {'id':planning.id})}}">
+                                    <i class="fa fa-trash-o"></i> Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info btn-xs" href="{{path('modifier_planning',{'id':planning.id})}}">
+                                    <i class="fa fa-pencil"></i> Modifier</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+
+{% endblock %}

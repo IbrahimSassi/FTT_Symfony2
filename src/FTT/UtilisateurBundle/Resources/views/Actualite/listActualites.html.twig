@@ -1,0 +1,36 @@
+{% extends "FTTUtilisateurBundle::layoutGlobal.html.twig" %}
+    {% block body %}
+        <!-- Recent Post -->
+        <div class="col-md-12">
+
+            <div class="titles">
+                <h4>Les derniéres actualités</h4>
+            </div>
+           {% for actualite in actualites %}
+
+            <!-- Post Item -->
+            <div class="post-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="img-hover">
+                            
+                           <img alt="Embedded Image" src="data:image/png;base64,{{ imagesActualite[loop.index-1] }}" class="img-responsive">
+                           <div class="overlay"><a href="{{path('single_article', {'id':actualite.id})}}">+</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h4><a href="{{path('single_article', {'id':actualite.id})}}"> {{actualite.titreActualite}}</a></h4>
+                        <p class="data-info">{{actualite.dateActualite|date('d-m-Y')}}  / <i class="fa fa-comments"></i><a href="#">0</a></p>
+                        <p>{{actualite.descriptionActualite[0:200]}}... <a href="{{path('single_article', {'id':actualite.id})}}"> [+]</a></p>                                            
+                    </div>
+               </div>
+            </div>
+             <!-- End Post Item -->
+             
+            {% endfor %}
+            <div class="navigation">
+                {{ knp_pagination_render(actualites) }}
+            </div>
+        </div>  
+        <!-- End Recent Post --> 
+    {% endblock %}

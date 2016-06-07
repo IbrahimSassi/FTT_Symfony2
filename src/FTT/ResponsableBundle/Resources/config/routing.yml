@@ -1,0 +1,35 @@
+ftt_responsable_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: FTTResponsableBundle:Default:index }
+choisir_joueur:
+    path:     /choisirJoueur
+    defaults: { _controller: FTTResponsableBundle:TestAntiDopage:AfficherMatchs }
+hasard_test:
+    path:     /ajoutTest/{id}
+    defaults: { _controller: FTTResponsableBundle:TestAntiDopage:HasardTest }
+resultat_test:
+    path:     /ResultatTest
+    defaults: { _controller: FTTResponsableBundle:TestAntiDopage:AfficherResultat }
+test_en_cours:
+    path:     /TestsEnAttenteDAffectation
+    defaults: { _controller: FTTResponsableBundle:TestAntiDopage:AfficherTestEnAttente }
+#profil responsable   
+consulter_profil_responsable:
+    path: /profilResponsable
+    defaults: { _controller: FTTResponsableBundle:Profil:Profil}
+
+modifier_profil_responsable:
+    path: /modifierProfilResponsable
+    defaults: { _controller: FTTResponsableBundle:Profil:EditProfil}
+    
+update_profil_responsable:
+    path: /updateProfilResponsable
+    defaults: { _controller: FTTResponsableBundle:Profil:UpdateProfil}
+
+envoie_resultat_test:
+    path: /envoieResultat/{id}
+    defaults: { _controller: FTTResponsableBundle:TestAntiDopage:EnvoyerResultatTest }
+   
+accueil_responsable:
+    path: /accueilResponsable
+    defaults: { _controller: FTTResponsableBundle:Accueil:Accueil}

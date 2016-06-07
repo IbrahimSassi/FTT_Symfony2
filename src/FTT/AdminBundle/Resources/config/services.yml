@@ -1,0 +1,8 @@
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+    ib_user.oauth_user_provider:
+        class: FTT\AdminBundle\Auth\OAuthProvider
+        arguments: [@session, @doctrine, @service_container]

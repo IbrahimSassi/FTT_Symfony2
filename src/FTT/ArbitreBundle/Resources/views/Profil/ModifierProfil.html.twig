@@ -1,0 +1,16 @@
+{% extends "FTTArbitreBundle::layoutArbitre.html.twig" %}
+
+{% block bodyAdmin %}
+
+    <div class="col-md-8" style="margin-left: 15%;margin-right: 2%;">
+
+        <form action="" method="POST" {{form_enctype(Form)}} >
+            <table algin="center">
+
+                {{form(Form)}}
+
+            </table>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    ftt_responsable.example:
+#        class: FTT\ResponsableBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

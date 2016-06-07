@@ -1,0 +1,69 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+        {% block bodyAdmin %}
+      
+
+<body> 
+
+
+
+ <hr>
+
+  <h2> <strong> Répondre aux contacts</strong> </h2>
+ 
+
+ <p>{{form_errors(Form)}}</p>
+
+ <hr>
+
+ <form  method="POST" action="" > 
+     <table>
+       <tr>
+           <td>
+               {{form_label(Form.email)}}
+           </td>
+           <td>
+               {{form_widget(Form.email)}}
+           </td>
+       </tr>
+         
+       
+         <tr>
+           <td>
+               {{form_label(Form.sujet)}}
+           </td>
+           <td>
+               {{form_widget(Form.sujet)}}
+           </td>
+       </tr>
+    
+         <tr>
+           <td>
+               {{form_label(Form.description)}}
+           </td>
+           <td>
+               {{form_widget(Form.description)}}
+           </td>
+       </tr>
+     <tr>
+           <td>
+               {{form_label(Form.reponseReclamation)}}
+           </td>
+           <td>
+               {{form_widget(Form.reponseReclamation)}}
+           </td>
+       </tr>
+     
+         
+       <tr>
+           <td>
+       <input type="submit"  value="envoyer">
+           </td>
+       </tr>
+
+ </form>
+
+</body>
+        {% endblock %}
+
+   

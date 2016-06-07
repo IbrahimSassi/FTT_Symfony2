@@ -1,0 +1,11 @@
+{% extends "FTTArbitreBundle::layoutArbitre.html.twig" %}
+
+
+
+
+        {% block bodyAdmin %}
+            <h1>Modification d'un planning arbitre</h1>
+            {{form(Form)}}
+            {{form_errors(Form)}}
+
+        {% endblock %}

@@ -1,0 +1,50 @@
+{% extends "FTTMedecinBundle::layoutMedecin.html.twig" %}
+{% block bodyAdmin %}
+
+    <center>
+        {% if test is empty %}
+            <br><br><br>
+            <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+                <h1 align='center' style='color:red;'> Il n'y a aucun joueur a tester </h1></font> 
+            </div> 
+        {% else %}
+            <h1> Tests Anti-dopage proposés :</h1>
+            {% for test in test %}
+                    <table border="1" width="40%" >
+                        <tr>
+                            <td>
+                        <center>
+                            <h5> Date : {{test.idMatch.dateMatch | date('d/m/Y')}}</h5>
+                            <h5> Evenement : {{test.idMatch.idEvenement.nomEvenement }} </h5>
+                            <h5> Type : {{test.idMatch.typeMatch }} <h5>
+                            <h5> Complexe : {{test.idMatch.idStade.idComplexe.nomComplexe }} </h5>
+                            <h5> Stade : {{test.idMatch.idStade.nomStade }} </h5>
+                        </center>
+                        </td>
+                        <td>
+                        <center>
+                                <br>
+                                <a class="btn btn-success" href="{{path('enregister_test',{'id':test.id})}}" style="font-size: 175%"> Je prends </a>
+                        </center>
+                        </td>
+                        </tr>
+                    </table>
+                    <br>
+            {% endfor %}
+        {% endif %}
+        <div class="navigation">
+            {{ knp_pagination_render(test) }}
+        </div>
+    </center>
+
+<script>
+        function clignotement() {
+            if (document.getElementById("MonElement").style.display == "block")
+                document.getElementById("MonElement").style.display = "none";
+            else
+                document.getElementById("MonElement").style.display = "block";
+        }
+        setInterval("clignotement()", 700);
+    </script> 
+
+{% endblock %}

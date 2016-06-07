@@ -1,0 +1,139 @@
+<!-- mainmenu-->
+<nav class="mainmenu">
+    <div class="container" style="font-family: 'Oswald'">
+        <!-- Menu-->
+        <ul class="sf-menu" id="menu">
+            <li class="selected">
+                <a href="{{path('ftt_utilisateur_homepage')}}">Accueil</a>
+            </li>    
+
+            <li class="current">
+                <a href="{{path('list_news')}}">News</a>
+            </li>
+
+            <li class="current">
+                <a href="#">FTT</a>
+                <ul class="sub-current">
+                    <li>
+                        <a href="{{path('list_clubs')}}">Clubs</a>
+                    </li>
+                    <li>
+                        <a href="{{path('list_joueurs')}}">Joueurs</a>
+                    </li>
+                    <li>
+                        <a href="{{path('consulter_arbitre')}}">Arbitres</a>
+                    </li>
+                    <li>
+                        <a href="{{path('consulter_complexe')}}">Complexes</a>
+                    </li>
+                    <li>
+                        <a href="{{path('consulter_stade')}}">Stades</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+            <li class="current">
+                <a href="#">Competitions</a>
+                <ul class="sub-current">
+                    <li>
+                        <a href="{{path('consulter_evenements')}}">Evenements</a>
+                    </li>
+                    <li class="current">
+                        <a href="{{path('consulter_matchs')}}">Matchs</a>
+                        <ul class="sub-current">
+                            <li>
+                                <a href="{{path('consulter_matchs')}}">Details</a>
+                            </li>
+
+                            <li>
+                                <a href="{{path('resultat_match')}}">Resultats</a>
+                            </li>
+                            <li>
+                                <a href="{{path('regarder_match')}}">Matchs en direct</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="current">
+                        <a href="{{path('joueur_classementNationnal')}}">Classements</a>
+                        <ul class="sub-current">
+                            <li>
+                                <a href="{{path('joueur_classementNationnal')}}">Classement National</a>
+                            </li>
+                            <li>
+                                <a href="{{path('joueur_classementInternational')}}">Classement International</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="current">
+                <a href="{{path('contact_federation')}}">Contact</a>
+                <ul class="sub-current">
+                    <li>
+                        <a href="{{path('contact_federation')}}">Contactez-Nous</a>
+                    </li>
+                    <li>
+                        <a href="{{path('contact_federation')}}">Informations</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="current">
+                <a href="{{path('matchAparier')}}">Pronostics</a>
+                <ul class="sub-current">
+                    <li>
+                        <a href="{{path('matchAparier')}}">Matchs a parier</a>
+                    </li>
+                    {% if is_granted('ROLE_ADHERENT') %}
+                        <li>
+                            <a href="{{path('list_resultat_pronostic')}}">Resultats pari</a>
+                        </li>
+
+                    {% endif %}
+                </ul>
+            </li> 
+            {% if is_granted('ROLE_ADHERENT') %}
+                <li class="current">
+                    <a href="{{path('consulter_profil_adherent')}}">Profil</a>
+                    <ul class="sub-current">
+                        <li>
+                            <a href="{{path('modifier_profil_adherent')}}">Modifier informations</a>
+                        </li>
+                        <li>
+                            <a href="{{path('point_adherent')}}">Acheter/Vendre points</a>
+                        </li>
+                        <li>
+                            <a href="{{path('ticket_user')}}">Mes Tickets</a>
+                        </li>
+                        <li>
+                            <a href="{{path('ftt_adherent_homepage')}}">Recharger solde</a>
+                        </li>
+                    </ul>
+                </li> 
+                {% block menu %}
+
+                {% endblock %}
+            {% elseif is_granted('ROLE_ARBITRE') %}
+                <li class="current">
+                    <a href="{{path('consulter_profil_arbitre')}}">Espace professionnel 
+                        <i class="fa fa-unlock" aria-hidden="true"></i></a>
+                    {% elseif is_granted('ROLE_MEDECIN') %}   
+                <li class="current">
+                    <a href="{{path('consulter_profil_medecin')}}">Espace professionnel 
+                        <i class="fa fa-unlock" aria-hidden="true"></i></a>
+                    {% elseif is_granted('ROLE_RESPONSABLE') %} 
+                <li class="current">
+                    <a href="{{path('consulter_profil_responsable')}}">Espace professionnel 
+                        <i class="fa fa-unlock" aria-hidden="true"></i></a>
+                    {% elseif is_granted('ROLE_SUPER_ADMIN') %}  
+                <li class="current">
+                    <a href="{{path('consulter_profil_admin')}}">Espace professionnel 
+                        <i class="fa fa-unlock" aria-hidden="true"></i></a>
+                    {% endif %}
+
+
+        </ul>
+        <!-- End Menu-->
+    </div>
+</nav>

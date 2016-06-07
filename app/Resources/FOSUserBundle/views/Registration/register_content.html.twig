@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+            <div class="body"></div>
+
+		<div class="grad"></div>
+                		<div class="header">
+			<div>FTT<span>Inscription</span></div>
+		</div>
+		<div class="header1">
+			<div>Fédération Tunisienne de<span>Tennis</span></div>
+		</div>
+                <div class="register" >
+                    
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                        {{ form_widget(form) }}
+                        <div>
+                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                        </div>
+                </div>
+                    {{ form_end(form) }}

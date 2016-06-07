@@ -1,0 +1,292 @@
+ftt_admin_homepage:
+    path:     /accueil
+    defaults: { _controller: FTTAdminBundle:Default:index }
+    
+#Actualite
+list_actualite:
+    path: /ListActualites
+    defaults: { _controller: FTTAdminBundle:Actualite:list }
+
+supprimer_actualite:
+    path: /supprimerActualite/{id}
+    defaults: { _controller: FTTAdminBundle:Actualite:supprimer }
+    
+modifier_actualite:
+    path: /modifierActualite/{id}
+    defaults: { _controller: FTTAdminBundle:Actualite:modifier }
+    
+ajouter_actualite:
+    path: /ajouterActualite
+    defaults: { _controller: FTTAdminBundle:Actualite:ajouter }
+
+#MatchInfo
+list_matchsInfo:
+    path: /ListMatchInfo
+    defaults: { _controller: FTTAdminBundle:MatchInfo:list }
+
+supprimer_matchInfo:
+    path: /supprimerMatchInfo/{id}
+    defaults: { _controller: FTTAdminBundle:MatchInfo:supprimer }
+    
+modifier_matchInfo:
+    path: /modifierMatchInfo/{id}
+    defaults: { _controller: FTTAdminBundle:MatchInfo:modifier }
+    
+ajouter_matchInfo:
+    path: /ajouterMatchInfo
+    defaults: { _controller: FTTAdminBundle:MatchInfo:ajouter }
+
+List_match_sansScore:
+    path: /ListMatchSansScore
+    defaults: { _controller: FTTAdminBundle:MatchInfo:listMatchSansScore }
+    
+Attribuer_Score:
+    path: /AttribuerScore/{idMatch}
+    defaults: { _controller: FTTAdminBundle:ResultatMatch:ajouter }
+
+
+AjouterTicket:
+    path: /AjouterTicket
+    defaults: { _controller: FTTAdminBundle:Ticket:ajouter }
+
+
+#Communication
+ajouter_streaming_match:
+    path: /ajouterStreamingMatch
+    defaults: { _controller: FTTAdminBundle:StreamingMatch:ajouter }
+    
+#gestion Comptes
+list_users:
+    path: /ListUsers
+    defaults: { _controller: FTTAdminBundle:User:AfficherUser}
+modifier_user:
+    path: /ModifierUser/{id}
+    defaults: { _controller: FTTAdminBundle:User:ModifierUser}
+bloquer_user:
+    path: /BloquerUser/{id}
+    defaults: { _controller: FTTAdminBundle:User:BloquerUser}
+valider_user:
+    path: /ValiderUser/{id}
+    defaults: { _controller: FTTAdminBundle:User:ValiderUser}
+list_users_en_att:
+    path: /ListUsersEnAttente
+    defaults: { _controller: FTTAdminBundle:User:AfficherUserEnAttente}
+    
+#Profile
+    
+consulter_profil_admin:
+    path: /profilAdmin
+    defaults: { _controller: FTTAdminBundle:Profil:Profil}
+
+modifier_profil_admin:
+    path: /modifierProfilAdmin
+    defaults: { _controller: FTTAdminBundle:Profil:EditProfil}
+    
+update_profil_admin:
+    path: /updateProfilAdmin
+    defaults: { _controller: FTTAdminBundle:Profil:UpdateProfil}
+
+
+#evenement ons
+list_events:
+    path: /ListEvents
+    defaults: { _controller: FTTAdminBundle:Evenement:listEvents }
+
+supprimer_events:
+    path: /suppEvents/{id}
+    defaults: { _controller: FTTAdminBundle:Evenement:suppEvents }
+    
+modifier_events:
+    path: /modifEvents/{id}
+    defaults: { _controller: FTTAdminBundle:Evenement:modifierEvents }
+    
+ajouter_events:
+    path: /ajouterEvents
+    defaults: { _controller: FTTAdminBundle:Evenement:ajouterEvents}
+ 
+#don ons
+list_dons:
+    path: /ListDons
+    defaults: { _controller: FTTAdminBundle:Don:listDons }
+
+supprimer_dons:
+    path: /suppDons/{id}
+    defaults: { _controller: FTTAdminBundle:Don:suppDons } 
+   
+modifier_dons:
+    path: /modifDons/{id}
+    defaults: { _controller: FTTAdminBundle:Don:modifierDons } 
+ 
+ajouter_dons:
+    path: /ajouterDons
+    defaults: { _controller: FTTAdminBundle:Don:ajouterDons}
+    
+    #donclub ons
+list_donsclub:
+    path: /ListDonsclub
+    defaults: { _controller: FTTAdminBundle:DonsClub:listdonsclub }
+attribuer_dons_club:
+    path: /ajoutdonsclubs
+    defaults: { _controller: FTTAdminBundle:DonsClub:ajouterdonsclub}
+Annuler_donsclubs:
+    path: /annulerdonsclubs/{id}
+    defaults: { _controller: FTTAdminBundle:DonsClub:suppdonsclub}
+    #archivage ons
+archiveevents:
+    path: /archiveEvents
+    defaults: { _controller: FTTAdminBundle:Archive:listEventsarchive }
+
+archiveactualite:
+    path: /archiveactualite
+    defaults: { _controller: FTTAdminBundle:Archive:listactualitéarchive }
+archiveMatch:
+    path: /archiveMatch
+    defaults: { _controller: FTTAdminBundle:Archive:AfficherMatchsArchive }
+  
+#sessionArbitre hanene
+
+SessionArbitre_add:
+    path: /ajouterSessionArbitre
+    defaults: { _controller: FTTAdminBundle:SessionArbitre:ajouter }
+    
+SessionArbitre_display:
+    path: /listSessionArbitre
+    defaults: { _controller: FTTAdminBundle:SessionArbitre:list }
+ 
+SessionArbitre_delete:
+    path: /supprimerSessionArbitre/{id}
+    defaults: { _controller: FTTAdminBundle:SessionArbitre:supprimer }
+    
+SessionArbitre_modify:
+    path: /modifierSessionArbitre/{id}
+    defaults: { _controller: FTTAdminBundle:SessionArbitre:modifier }
+#marwen complexe
+   
+ajouter_complexe:
+    path: /ajouterComplexe
+    defaults: { _controller: FTTAdminBundle:Complexe:Ajouter }
+    
+modifier_complexe:
+    path: /modifierComplexe/{id}
+    defaults: { _controller: FTTAdminBundle:Complexe:Modifier }
+
+supprimer_complexe:
+    path: /supprimerComplexe/{id}
+    defaults: { _controller: FTTAdminBundle:Complexe:supprimer }
+    
+list_complexe:
+    path: /ListComplexe
+    defaults: { _controller: FTTAdminBundle:Complexe:list }
+   #marwen stade
+ajouter_stade:
+    path: /ajouterStade
+    defaults: { _controller: FTTAdminBundle:Stade:ajouter }
+    
+modifier_stade:
+    path: /modifierStade/{id}
+    defaults: { _controller: FTTAdminBundle:Stade:modifier }
+    
+supprimer_stade:
+    path: /supprimerStade/{id}
+    defaults: { _controller: FTTAdminBundle:Stade:supprimer }
+    
+list_stade:
+    path: /ListStade
+    defaults: { _controller: FTTAdminBundle:Stade:list }
+
+google_map:
+    path: /map
+    defaults: { _controller: FTTAdminBundle:Complexe:map } 
+    
+choose_map:
+    path: /choose
+    defaults: { _controller: FTTAdminBundle:Complexe:choose }  
+    
+interface_map:
+    path: /interface/{id}
+    defaults: { _controller: FTTAdminBundle:Complexe:lieux }
+    
+consulter_lieux:
+    path: /consulter
+    defaults: { _controller: FTTAdminBundle:Complexe:listlieux }
+
+
+#Syrine 
+
+#Club   
+list_club:
+    path: /ListClubs
+    defaults: { _controller: FTTAdminBundle:Club:list }
+    
+ajouter_club:
+    path: /ajouterClub
+    defaults: { _controller: FTTAdminBundle:Club:ajouter }
+supprimer_club:
+    path: /supprimerClub/{id}
+    defaults: { _controller: FTTAdminBundle:Club:supprimer }
+    
+modifier_club:
+    path: /modifierClub/{id}
+    defaults: { _controller: FTTAdminBundle:Club:modifier }
+#Joueur    
+list_joueur:
+    path: /ListJoueurs
+    defaults: { _controller: FTTAdminBundle:Joueur:list }
+    
+ajouter_joueur:
+    path: /ajouterJoueur
+    defaults: { _controller: FTTAdminBundle:Joueur:ajouter }
+supprimer_joueur:
+    path: /supprimerJoueur/{id}
+    defaults: { _controller: FTTAdminBundle:Joueur:supprimer }
+modifier_joueur:
+    path: /modifierJoueur/{id}/{idClub}
+    defaults: { _controller: FTTAdminBundle:Joueur:modifier }
+
+detail_joueur:
+     path: /detailJoueur/{id}
+     defaults: { _controller: FTTAdminBundle:Joueur:Afficherdetail }  
+#CarriereJoueur     
+list_carrieres_joueur:
+    path: /ListCarrieresJoueur
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:list }
+    
+detail_Carriere_Joueur:
+    path: /DetailCarriereJoueur/{id}
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:AfficherDetailCarriere }
+    
+detail_Carriere_Joueur_Modification:
+    path: /DetailCarriereJoueurModification/{id}
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:AfficherDetailCarriereModification }
+    
+list_carrieres_joueur_modification:
+    path: /ListCarrieresJoueurModification
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:listModification }
+    
+modifier_carriere:
+    path: /modifierCarriere/{id}/{idJoueur}
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:modifier }
+    
+ajout_carriere:
+    path: /ajoutCarriere/{idJoueur}
+    defaults: { _controller: FTTAdminBundle:CarriereJoueur:ajouter}
+    
+#Reclamation
+list_reclamations:
+    path: /listReclamation
+    defaults: { _controller: FTTAdminBundle:Reclamation:list }
+    
+repondre_reclamations:
+    path: /RepondreReclamation/{id}
+    defaults: { _controller: FTTAdminBundle:Reclamation:modifier }
+    
+send_mail:
+    path: /SendMail/{id}
+    defaults: { _controller: FTTAdminBundle:Reclamation:sendMail }
+    
+    
+    #Pari
+list_match_A_parier:
+    path: /listMatchAparier
+    defaults: { _controller: FTTAdminBundle:MatchsPronostic:list }
+    

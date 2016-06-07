@@ -1,0 +1,13 @@
+parameters:
+
+services:
+    star_rating.type:
+        class: blackknight467\StarRatingBundle\Form\RatingType
+        tags:
+            - { name: form.type, alias: rating }
+
+    star_rating.twig:
+        class: blackknight467\StarRatingBundle\Extensions\StarRatingExtension
+        tags: [{ name: twig.extension }]
+        arguments:
+            - @service_container

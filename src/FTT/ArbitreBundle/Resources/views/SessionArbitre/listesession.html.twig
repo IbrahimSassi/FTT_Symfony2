@@ -1,0 +1,99 @@
+{% extends "FTTArbitreBundle::layoutArbitre.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+   
+     
+    <!-- Plans -->
+    
+             
+         {% for sessionarbitre in  sessionarbitres %}
+        
+    <section id="plans">
+        <div class="container" style="width:3000px;">
+            <div class="row">
+        
+                <!-- item -->
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-warning panel-pricing">
+                        <div class="panel-heading"style="height:96px;">
+                            <i class="fa fa-archive"></i>
+                    
+                        </div>
+                       
+                        <ul class="list-group text-center" style="font-size:20px;">
+                            <li class="list-group-item"><i class="fa fa-adjust"></i> Type : {{sessionarbitre.typeSessionArbitre}} 
+                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i> Lieu  :   {{sessionarbitre.lieuSessionArbitre}}
+                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-hourglass-1"></i> Date  :   {{sessionarbitre.dateSessionArbitre|date("d/m/Y")}}
+                            </li> 
+                           
+                        </ul>
+                        <div class="panel-footer">
+                            <a class="btn btn-lg btn-block btn-warning" href="{{path('modifier_session',{'id':sessionarbitre.id})}}" onclick="new PNotify({
+                            title: 'Felicitation',
+                            text: 'Votre Candidature a eté envoyé avec succes!',
+                            type: 'info'
+                        });"> <i class="fa fa-pencil"></i> Déposer candidature</a>
+                        </div>
+
+                    </div>
+            </div>
+                <!-- /item -->
+
+                
+
+            </div>
+        </div>
+                </section >
+    <!-- /Plans -->
+      {% endfor %}
+
+              
+                   
+<style>
+
+.panel-pricing {
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+}
+.panel-pricing:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+.panel-pricing .panel-heading {
+  padding: 20px 10px;
+}
+.panel-pricing .panel-heading .fa {
+  margin-top: 10px;
+  font-size: 58px;
+}
+.panel-pricing .list-group-item {
+  color: #777777;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+.panel-pricing .list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.panel-pricing .list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.panel-pricing .panel-body {
+  background-color: #f0f0f0;
+  font-size: 40px;
+  color: #777777;
+  padding: 20px;
+  margin: 0px;
+}
+
+</style>
+<script>
+</script>
+
+        {% endblock %}
+
+
+        

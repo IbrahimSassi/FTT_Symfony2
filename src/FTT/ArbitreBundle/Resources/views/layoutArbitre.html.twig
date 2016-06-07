@@ -1,0 +1,43 @@
+
+
+{% extends "::layoutInscrit.html.twig" %}
+
+{% block menu %}
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+              
+            <h3>General</h3>
+        <ul class="nav side-menu">
+            
+            <li><a><i class="fa fa-edit"></i> planning arbitre<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="{{path('list_planning')}}">Lister les plannings</a>
+                    </li>
+                    <li><a href="{{path('ajouter_planning',{'id':6})}}">Ajouter planning</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-edit"></i> Comptes rendus matchs <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="#">Lister les comptes rendus</a>
+                    </li>
+                    <li><a href="#">Valider les comptes rendus</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-edit"></i> Déposer candidature<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="{{path('list_session')}}">lister candidatures</a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+            
+
+       
+          <!-- /sidebar menu -->
+{% endblock %}

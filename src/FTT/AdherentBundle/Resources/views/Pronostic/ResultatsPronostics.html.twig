@@ -1,0 +1,88 @@
+{% extends "FTTAdherentBundle::layoutAdherent.html.twig" %}
+
+{% block body %}
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <tr>
+            <td style="border-bottom: #88C425 solid 2px;">
+                <span>Resultat Pari</span></br>
+            </td>
+        </tr>
+    </table>
+    <table style="font-family: 'Exo';font-size: 32px;width: 100%;height: 50px;margin-bottom: 5%" class="table-responsive table-striped">
+        <form method="POST" action="">
+            <tr>
+
+                <td style="border-bottom: #F47920 solid 2px;">
+                    {{form_widget(form.imeiPronostic)}}
+                </td>
+                <td style="border-bottom: #00B6F1 solid 2px;width: 40%;;font-family: 'Oswald', sans-serif;">
+                    <input type="submit" value="Rechercher par IMEI Pronostic" class="btn btn-flat" style="width:100%">
+                </td>
+            </tr>
+        </form>
+    </table>
+    <table class="table" style="color: black">
+        {% for rst in resultatPronostic %}
+            {% set color="white" %}
+            {% set rs1='' %}
+            {% set rs2='' %}
+
+            {% set break='false' %}
+            {% for matchJoue in matchsJoues if break=='false' %}
+                {% if matchJoue.idMatch.id == rst.idMatchsPronostic.idMatch.id %}
+                    {% set break='true' %}
+                    {% set rs1=matchJoue.rsltJoueur1 %}
+                    {% set rs2=matchJoue.rsltJoueur2 %}
+                {% endif %} 
+            {% endfor %}
+
+            {% if rs1 > rs2 %}
+                {% if rst.reponse == 1 %}
+                    {% set color="greenyellow" %}
+                {% elseif rst.reponse == 2 %}
+                    {% set color="#c0392b" %}
+                {% endif %}
+            {% elseif rs1 < rs2 %}
+                {% if rst.reponse == 1 %}
+                    {% set color="#c0392b" %}
+                {% elseif rst.reponse == 2 %}
+                    {% set color="greenyellow" %}
+                {% endif %}
+            {% endif %}
+
+
+
+            <tr style="background-color: {{color}}">
+                <td>
+                    {{rst.idMatchsPronostic.idMatch.idJoueur1.nomJoueur}} {{rst.idMatchsPronostic.idMatch.idJoueur1.nomJoueur}}
+                    vs {{rst.idMatchsPronostic.idMatch.idJoueur2.nomJoueur}} {{rst.idMatchsPronostic.idMatch.idJoueur2.nomJoueur}}
+                </td>
+                <td>
+                    {% if rst.reponse == 1 %}
+                        <strong>{{rst.idMatchsPronostic.idMatch.idJoueur1.nomJoueur}}</strong>
+                    {% else %}
+                        <strong>{{rst.idMatchsPronostic.idMatch.idJoueur2.nomJoueur}}</strong>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if rst.nbrJoker == 1 %}
+                        <i class="fa fa-check-circle-o" style="color: #88C425"></i>
+
+                    {% else %}
+
+                        ~                
+                    {% endif %}
+                </td>
+                <td>
+                    {{ rst.gain }}
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+{% endblock %}

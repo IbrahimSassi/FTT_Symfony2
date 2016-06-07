@@ -1,0 +1,67 @@
+  
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+        
+        
+        {% block bodyAdmin %}
+
+            
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                De la part de
+                            </th>
+                            <th>
+                                Sujet
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                             
+                            <th>
+                                Reponse
+                            </th>
+                             <th>
+                                Action
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                          {% for reclamation in reclamations %}
+                        <tr>
+                            
+                            <td>
+                                {{reclamation.id}}
+                            </td>
+                            <td>
+                                {{reclamation.email}}
+                            </td>
+                            <td>
+                                {{reclamation.sujet}}
+                            </td>
+                          
+                            <td>
+                                {{reclamation.description}}
+                            </td>
+                                <td>
+                                {{reclamation.reponseReclamation}}
+                            </td>
+                            
+                            <td>
+                                <a class="btn btn-success btn-xs" href="{{path('repondre_reclamations', {'id':reclamation.id})}}">
+                                    <i class="fa fa-pencil"></i>Repondre</a>
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+               
+               {% endblock %}

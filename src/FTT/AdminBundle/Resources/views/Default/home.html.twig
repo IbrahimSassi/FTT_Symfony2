@@ -1,0 +1,111 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+{% block header1 %}
+    {{ include('FTTAdminBundle::Default/Includes/header.html.twig') }}
+{% endblock %}
+
+{% block header2 %}
+    {{ include('FTTAdminBundle::Default/Includes/header2.html.twig') }}
+{% endblock %}
+
+
+{% block bodyAdmin %}
+    <div class="col-md-3">
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3"><i class="glyphicon glyphicon-signal" style="font-size:4.5em"></i></div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size:2.5em">
+                            {{actualites }}
+                        </div>
+                        <div>Actualités</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{path('list_actualite')}}">
+                <div class="panel-footer">
+                    <div class="pull-left">Voir articles</div>
+                    <div class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3"><i class="glyphicon glyphicon-user" style="font-size:4.5em"></i></div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size:2.5em">{{users}}</div>
+                        <div>Utilisateurs</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{path('list_users')}}">
+                <div class="panel-footer">
+                    <div class="pull-left">Voir utilisateurs</div>
+                    <div class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3"><i class="glyphicon glyphicon-comment" style="font-size:4.5em"></i></div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size:2.5em">{{reclamations}}</div>
+                        <div>Reclamations</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{path('list_reclamations')}}">
+                <div class="panel-footer">
+                    <div class="pull-left">Voir reclmations</div>
+                    <div class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3"><i class="glyphicon glyphicon-th-list" style="font-size:4.5em"></i></div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size:2.5em">{{matchs}}</div>
+                        <div>Matchs</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{path('list_matchsInfo')}}">
+                <div class="panel-footer">
+                    <div class="pull-left">Voir matchs</div>
+                    <div class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="{{asset('js/graphe/exporting.js')}}"></script>      
+    <script src="{{asset('js/graphe/highcharts.js')}}"></script>    
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+    <div id="piechart" style="min-width: 400px; height: 400px; margin: 0 auto;"></div>
+
+
+{% endblock %}

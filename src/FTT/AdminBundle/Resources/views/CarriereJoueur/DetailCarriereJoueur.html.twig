@@ -1,0 +1,43 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+{% block bodyAdmin %}
+
+    <div>
+
+        <img class="img-responsive" src="data:image/png;base64,{{ images }}" alt="" />
+    </a>
+    <br/>
+</div>
+{% block bodymodificationCarriere %}	
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+            <tr>
+                <th>type</th>
+                <th>date</th>
+                <th>club</th>
+                <th>description</th>
+            </tr>
+        </thead>
+        <tbody>							
+
+            {% for carriere in carrieres %}				
+
+
+                <tr class="odd gradeX">
+                    <td>{{carriere.typeCarriere}} </td>
+                    <td>{{carriere.dateCarriere | date("d/m/Y")}}</td>
+                    <td>{{carriere.idClub.nomClub}}</td>
+                    <td>{{carriere.description}}</td>
+
+
+
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
+
+{% endblock %}

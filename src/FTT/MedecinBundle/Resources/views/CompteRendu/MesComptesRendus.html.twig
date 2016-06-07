@@ -1,0 +1,154 @@
+{% extends "FTTMedecinBundle::layoutMedecin.html.twig" %}
+{% block bodyAdmin %}
+
+    <center>
+        {% if test is empty %}
+            <br><br><br>
+            <div id="MonElement" class="EX_div" style="diplay:block;"> <font color=#FF0000> 
+                <h1 align='center' style='color:red;'> Vous n'avez aucun test </h1></font> 
+            </div> 
+        {% else %}
+            <h1> Vos Tests :</h1>
+            {% for key,test in test %}
+                {% if test.resultat == 1 %}
+                    <table border="1" width="40%"  >
+                        <tr>
+                            <td bordercolor="#000000" bgcolor="red" >
+                        <center>
+                            <font color="black">
+                            <h5> Date : {{test.idJoueurTester.idMatch.dateMatch | date('d/m/Y')}}</h5>
+                            <h5> Evenement : {{test.idJoueurTester.idMatch.idEvenement.nomEvenement }} </h5>
+                            <h5> Type : {{test.idJoueurTester.idMatch.typeMatch }} </h5>
+                            <h5> Complexe : {{test.idJoueurTester.idMatch.idStade.idComplexe.nomComplexe }} </h5>
+                            <h5> Stade : {{test.idJoueurTester.idMatch.idStade.nomStade }} </h5>
+                            {% for joueur in joueurs %}
+                                {% if joueur.id == test.idJoueurTester.joueurChoisi %}
+                                    <h5>Joueur : {{joueurs[key].nomJoueur}} {{joueurs[key].prenomJoueur}}</h5>
+                                    <h5>Club : {{joueurs[key].idClub.nomClub}} </h5>
+                                {% endif %}
+                            {% endfor %}
+                            </font>
+                        </center>
+                        </td>
+                        <td>
+                        <center>
+                            <a class="btn btn-info" id="show-{{test.id}}" style="font-size: 100%"> Modifier <br>compte rendu   
+                                <i class="fa fa-pencil"  aria-hidden="true"></i>
+                            </a>
+                        </center>
+                        </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div id="div2-{{test.id}}" style="margin-right: 60%">
+                        <table border="5" width="100%" style="margin-left: 75%" >
+                            <tr>
+                                <td>
+                            <center>
+                                <form method="POST" action="{{path('modifierCompte_rendu',{'id':test.id})}}">
+                                    <br>
+                                    <h3>Resultat : 
+                                        <select name="resultatTest" id="resultatTest" size="1" required="required">
+                                            <option></option>
+                                            <option value="1" selected="selected">+</option>
+                                            <option value="-1">-</option>
+                                        </select></h3>
+
+                                    <h4><textarea rows="5" name="description" id="description" style="height:150%; width:80%; display:yes;" required="required" >
+                                            {{test.description}} </textarea></h4> 
+                                    <center>
+                                        <button class="fa fa-check" style="font-size: 2em;"></button>
+                                    </center>
+                                </form>
+                            </center>
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% elseif test.resultat == -1 %}
+                    <table border="1" width="40%"  >
+                        <tr>
+                            <td bordercolor="#000000" bgcolor="green" >
+                        <center>
+                            <font color="black">
+                            <h5> Date : {{test.idJoueurTester.idMatch.dateMatch | date('d/m/Y')}}</h5>
+                            <h5> Evenement : {{test.idJoueurTester.idMatch.idEvenement.nomEvenement }} </h5>
+                            <h5> Type : {{test.idJoueurTester.idMatch.typeMatch }} </h5>
+                            <h5> Complexe : {{test.idJoueurTester.idMatch.idStade.idComplexe.nomComplexe }} </h5>
+                            <h5> Stade : {{test.idJoueurTester.idMatch.idStade.nomStade }} </h5>
+                            </font>
+                        </center>
+                        </td>
+                        <td>
+                        <center>
+                            <a class="btn btn-info" id="show-{{test.id}}" style="font-size: 100%"> Rédiger un nouveau <br>compte rendu    
+                                <i class="fa fa-pencil"  aria-hidden="true"></i>
+                            </a>
+                        </center>
+                        </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div id="div2-{{test.id}}" style="margin-right: 60%">
+                        <table border="5" width="100%" style="margin-left: 75%" >
+                            <tr>
+                                <td>
+                            <center>
+                                <form method="POST" action="{{path('modifierCompte_rendu',{'id':test.id})}}">
+                                    <br>
+                                    <h3>Resultat : 
+                                        <select name="resultatTest" id="resultatTest" size="1" required="required">
+                                            <option></option>
+                                            <option value="1">+</option>
+                                            <option value="-1" selected="selected">-</option>
+                                        </select></h3>
+
+                                    <h4><textarea rows="5" name="description" id="description" style="height:150%; width:80%; display:yes;" required="required" >
+                                            {{test.description}} </textarea></h4> 
+                                    <center>
+                                        <button class="fa fa-check" style="font-size: 2em;"></button>
+                                    </center>
+                                </form>
+                            </center>
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endif %}
+
+                <br>
+
+
+            {% endfor %}
+        {% endif %}
+        <div class="navigation">
+            {{ knp_pagination_render(test) }}
+        </div>
+    </center>
+
+    <script language="javascript" src="{{asset('js/jQuery/jquery-2.2.0.js')}}"></script>
+    <script>
+        function clignotement() {
+            if (document.getElementById("MonElement").style.display == "block")
+                document.getElementById("MonElement").style.display = "none";
+            else
+                document.getElementById("MonElement").style.display = "block";
+        }
+        setInterval("clignotement()", 700);
+    </script> 
+    <script>
+        $(document).ready(
+                function () {
+        {% for test in test %}
+                        $("#div2-{{test.id}}").hide();
+                        $("#show-{{test.id}}").click(
+                                function () {
+                                    $("#div2-{{test.id}}").slideToggle();
+                                });
+
+        {% endfor %}
+                    });
+
+    </script>
+
+{% endblock %}

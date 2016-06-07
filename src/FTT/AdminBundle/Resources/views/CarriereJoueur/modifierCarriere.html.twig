@@ -1,0 +1,15 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+
+ 
+        {% block bodyAdmin %}
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+            {{form(Form)}}
+            {{form_errors(Form)}}
+            </div>
+        </div>
+    </div>
+        {% endblock %}

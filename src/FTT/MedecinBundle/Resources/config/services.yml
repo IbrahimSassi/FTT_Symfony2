@@ -1,0 +1,4 @@
+services:
+#    ftt_medecin.example:
+#        class: FTT\MedecinBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

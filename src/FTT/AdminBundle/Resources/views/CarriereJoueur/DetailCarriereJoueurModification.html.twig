@@ -1,0 +1,62 @@
+{% extends "FTTAdminBundle::layoutAdmin.html.twig" %}
+
+{% block bodyAdmin %}
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+
+
+                <div>
+
+                    <img class="img-thumbnail" src="data:image/png;base64,{{ images }}" alt="" />
+                    </a>
+                    <br/>
+                </div>
+                <a class="btn btn-success btn-xs" href="{{path('ajout_carriere', {'idJoueur':joueur.id})}}">
+                    <i class="fa fa-plus"></i> Ajouter Une carriere
+                </a>
+
+                <table class="table table-striped table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th>type</th>
+                            <th>date</th>
+                            <th>Club</th>
+                            <th>description</th>
+
+                            <th>MAJ</th>
+                        </tr>
+                    </thead>
+                    <tbody>							
+
+                        {% for carriere in carrieres %}				
+
+
+                            <tr class="odd gradeX">
+                                <td>{{carriere.typeCarriere}} </td>
+                                <td>{{carriere.dateCarriere | date("d/m/Y")}}</td>
+                                <td>{{carriere.idClub.nomClub}}</td>
+                                <td>{{carriere.description}}</td>
+
+                                <td> 
+                                    <div class="btn-group" style="float:right;">
+                                        <a class="btn btn-info btn-xs" href="{{path('modifier_carriere', {'id':carriere.id,'idJoueur':carriere.idJoueur.id})}}">
+                                            <i class="fa fa-pencil"></i> Modifier</a>	
+                                    </div>
+                                </td>
+
+
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
