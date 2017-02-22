@@ -155,7 +155,7 @@ released under the MIT or BSD license.
 
 Enjoy!
 
-Developed By : http://ibrahimsassi.me
+Developed By : [Ibrahim Sassi][14] 
 =====================================
 
 [1]:  http://symfony.com/doc/2.5/book/installation.html
@@ -171,3 +171,4 @@ Developed By : http://ibrahimsassi.me
 [11]: http://symfony.com/doc/2.5/cookbook/logging/monolog.html
 [12]: http://symfony.com/doc/2.5/cookbook/assetic/asset_management.html
 [13]: http://symfony.com/doc/2.5/bundles/SensioGeneratorBundle/index.html
+[14]: http://ibrahimsassi.me
