@@ -155,6 +155,9 @@ released under the MIT or BSD license.
 
 Enjoy!
 
+Developed By : http://ibrahimsassi.me
+=====================================
+
 [1]:  http://symfony.com/doc/2.5/book/installation.html
 [2]:  http://getcomposer.org/
 [3]:  http://symfony.com/download
